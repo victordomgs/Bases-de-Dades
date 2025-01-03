@@ -62,58 +62,79 @@ Obtindrem:
 | 206             | 19      | 91             | C1        |
 | 207             | 20      | 80             | B2        |
 
+## Sintaxi de l'instrucció SELECT utilitzant la clàusula WHERE
 
-<table>
-  <thead>
-    <tr style="background-color: #00000;">
-      <th><b>Student_ID</b></th>
-      <th><b>Age</b></th>
-      <th><b>Percentage</b></th>
-      <th><b>Grade</b></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>201</td>
-      <td>18</td>
-      <td>89</td>
-      <td>A2</td>
-    </tr>
-    <tr>
-      <td>202</td>
-      <td>19</td>
-      <td>93</td>
-      <td>A1</td>
-    </tr>
-    <tr>
-      <td>203</td>
-      <td>20</td>
-      <td>89</td>
-      <td>A2</td>
-    </tr>
-    <tr>
-      <td>204</td>
-      <td>19</td>
-      <td>78</td>
-      <td>B1</td>
-    </tr>
-    <tr>
-      <td>205</td>
-      <td>20</td>
-      <td>75</td>
-      <td>B1</td>
-    </tr>
-    <tr>
-      <td>206</td>
-      <td>19</td>
-      <td>91</td>
-      <td>C1</td>
-    </tr>
-    <tr>
-      <td>207</td>
-      <td>20</td>
-      <td>80</td>
-      <td>B2</td>
-    </tr>
-  </tbody>
-</table>
+La clàusula **WHERE** s'utilitza amb la instrucció **SELECT** per retornar només aquelles files de la taula que compleixen la condició especificada a la consulta.
+
+En SQL, la clàusula **WHERE** no només s'utilitza amb la instrucció **SELECT**, sinó també amb altres instruccions com **UPDATE**, **ALTER** i **DELETE**.
+
+```sql
+SELECT * FROM Nom_de_Taula WHERE [condició];
+```
+En aquesta sintaxi, la condició es defineix a la clàusula WHERE mitjançant operadors lògics o de comparació d'SQL.
+
+### Exemple de l'ús de SELECT utilitzant la clàusula WHERE 
+
+Imaginem que tenim la següent taula de dades: 
+
+```sql
+SELECT * FROM Employee_Details;
+```
+
+| **Employee_Id** | **Emp_Name** | **Emp_City**  | **Emp_Salary** | **Emp_Panelty** |
+|------------------|-------------|---------------|----------------|-----------------|
+| 101              | Anuj        | Ghaziabad     | 25000          | 500             |
+| 102              | Tushar      | Lucknow       | 29000          | 1000            |
+| 103              | Vivek       | Kolkata       | 35000          | 500             |
+| 104              | Shivam      | Goa           | 22000          | 500             |
+
+La següent consulta mostra els registres dels empleats de la taula anterior que tenen una penalització (**Emp_Panelty**) igual a 500:
+
+```sql
+SELECT * FROM Employee_Details WHERE Emp_Panelty = 500;
+```
+
+| **Employee_Id** | **Emp_Name** | **Emp_City**  | **Emp_Salary** | **Emp_Panelty** |
+|------------------|-------------|---------------|----------------|-----------------|
+| 101              | Anuj        | Ghaziabad     | 25000          | 500             |
+| 103              | Vivek       | Kolkata       | 35000          | 500             |
+| 104              | Shivam      | Goa           | 22000          | 500             |
+
+## Sintaxi de l'instrucció SELECT utilitzant la clàusula GROUP BY
+
+La clàusula **GROUP BY** s'utilitza amb la instrucció **SELECT** per agrupar les dades comunes d'una columna d'una taula. És especialment útil quan es combinen amb funcions agregades com `SUM`, `AVG`, `COUNT`, etc., per obtenir resums o estadístiques de grups de dades.
+
+```sql
+SELECT Nom_Columna_1, Nom_Columna_2, ..., Nom_Columna_N, funció_agregada(Nom_Columna2) 
+FROM Nom_Taula 
+GROUP BY Nom_Columna1;
+```
+
+### Exemple de l'ús de SELECT utilitzant la clàusula GROUP BY
+
+Imaginem que tenim la següent taula de dades: 
+
+```sql
+SELECT * FROM Cars_Details; 
+```
+
+| **Car_Number** | **Car_Name** | **Car_Amount** | **Car_Price** |
+|----------------|--------------|----------------|---------------|
+| 2578          | Creta        | 3              | 1000000       |
+| 9258          | Audi         | 2              | 900000        |
+| 8233          | Venue        | 6              | 900000        |
+| 6214          | Nexon        | 7              | 1000000       |
+
+La següent consulta **SELECT** amb la clàusula **GROUP BY** llista el nombre de cotxes que tenen el mateix preu:
+
+```sql
+SELECT Car_Price , COUNT(Car_Name) 
+FROM Cars_Details 
+GROUP BY Car_Price;
+```
+
+| **Car_Number** | **COUNT(Car_Name)** |
+|----------------|--------------|
+| 1000000        | 2        | 
+| 900000         | 2       |
+
