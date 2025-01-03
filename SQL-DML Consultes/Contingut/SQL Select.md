@@ -65,7 +65,7 @@ Obtindrem:
 
 <table>
   <thead>
-    <tr style="background-color: #D3D3D3;">
+    <tr style="background-color: #00000;">
       <th><b>Student_ID</b></th>
       <th><b>Age</b></th>
       <th><b>Percentage</b></th>
