@@ -8,6 +8,7 @@ Mitjançant aquesta comanda, també podem accedir a un registre concret d'una co
 
 ```sql
 SELECT Nom_Columna_1, Nom_Columna_2, ..., Nom_Columna_N FROM Nom_Taula;
+```
 
 En aquesta sintaxi:
 - **Nom_Columna_1**, **Nom_Columna_2**, ..., **Nom_Columna_N** són els noms de les columnes de la taula de les quals volem llegir les dades.
