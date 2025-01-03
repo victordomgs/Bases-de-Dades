@@ -4,6 +4,8 @@ L'instrucció **SELECT** és la comanda més utilitzada en el llenguatge SQL (St
 
 Mitjançant aquesta comanda, també podem accedir a un registre concret d'una columna específica d'una taula. La taula que emmagatzema els registres retornats per la instrucció SELECT s'anomena **taula de resultats**.
 
+---
+
 ## Sintaxi de l'instrucció SELECT en SQL
 
 ```sql
@@ -62,6 +64,8 @@ Obtindrem:
 | 206             | 19      | 91             | C1        |
 | 207             | 20      | 80             | B2        |
 
+---
+
 ## Sintaxi de l'instrucció SELECT utilitzant la clàusula WHERE
 
 La clàusula **WHERE** s'utilitza amb la instrucció **SELECT** per retornar només aquelles files de la taula que compleixen la condició especificada a la consulta.
@@ -100,6 +104,8 @@ SELECT * FROM Employee_Details WHERE Emp_Panelty = 500;
 | 103              | Vivek       | Kolkata       | 35000          | 500             |
 | 104              | Shivam      | Goa           | 22000          | 500             |
 
+---
+
 ## Sintaxi de l'instrucció SELECT utilitzant la clàusula GROUP BY
 
 La clàusula **GROUP BY** s'utilitza amb la instrucció **SELECT** per agrupar les dades comunes d'una columna d'una taula. És especialment útil quan es combinen amb funcions agregades com `SUM`, `AVG`, `COUNT`, etc., per obtenir resums o estadístiques de grups de dades.
@@ -133,8 +139,95 @@ FROM Cars_Details
 GROUP BY Car_Price;
 ```
 
-| **Car_Number** | **COUNT(Car_Name)** |
+| **Car_Price** | **COUNT(Car_Name)** |
 |----------------|--------------|
 | 1000000        | 2        | 
 | 900000         | 2       |
 
+---
+
+## Sintaxi de l'instrucció SELECT utilitzant la clàusula HAVING
+
+La clàusula **HAVING** s'utilitza en una instrucció **SELECT** per aplicar condicions sobre els grups creats per la clàusula **GROUP BY**. A diferència de la clàusula **WHERE**, que filtra registres abans d'agrupació, **HAVING** permet filtrar els grups resultants.
+
+```sql
+SELECT Nom_Columna_1, Nom_Columna_2, ..., Nom_Columna_N, funció_agregada(Nom_Columna_2) 
+FROM Nom_Taula 
+GROUP BY Nom_Columna_1 
+HAVING [condició];
+```
+
+### Exemple de l'ús de SELECT utilitzant la clàusula HAVING
+
+Imaginem que tenim la següent taula de dades: 
+
+```sql
+SELECT * FROM Employee_Having;
+```
+
+| **Employee_Id** | **Employee_Name** | **Employee_Salary** | **Employee_City** |
+|------------------|-------------------|----------------------|--------------------|
+| 201              | Jone             | 20000               | Goa                |
+| 202              | Basant           | 40000               | Delhi              |
+| 203              | Rashet           | 80000               | Jaipur             |
+| 204              | Anuj             | 20000               | Goa                |
+| 205              | Sumit            | 50000               | Delhi              |
+
+La següent consulta mostra el salari total dels empleats que tenen un salari superior a 50000, agrupats per ciutat:
+
+```sql
+SELECT Employee_City , SUM(Employee_Salary)
+FROM Employee_Having 
+GROUP BY Employee_City 
+HAVING SUM(Employee_Salary) > 5000;
+```
+|  **Employee_City** | **SUM(Employee_Salary)** |
+|---------------------------|--------------------|
+| Delhi                   |      90000         |
+| Jaipur                    |     80000        |
+
+---
+
+## Sintaxi de l'instrucció SELECT utilitzant la clàusula ORDER BY
+
+La clàusula **ORDER BY** amb la instrucció **SQL SELECT** permet mostrar els registres o files de manera ordenada.
+
+La clàusula **ORDER BY** organitza els valors en ordre **ascendent** o **descendent**. En molts sistemes de bases de dades, els valors de la columna s'ordenen en ordre ascendent per defecte.
+
+```sql
+SELECT Column_Name_1, Column_Name_2, ....., column_Name_N
+FROM table_name
+WHERE [Condition]
+ORDER BY [column_Name_1, column_Name_2, ....., column_Name_N asc | desc ];  
+```
+
+### Exemple de l'ús de SELECT utilitzant la clàusula ORDER BY
+
+Imaginem que tenim la següent taula de dades: 
+
+```sql
+SELECT * FROM Employee_Order;
+```
+
+| **Id** | **FirstName** | **Salary** | **City**  |
+|--------|---------------|------------|-----------|
+| 201    | Jone          | 20000      | Goa       |
+| 202    | Basant        | 15000      | Delhi     |
+| 203    | Rashet        | 80000      | Jaipur    |
+| 204    | Anuj          | 90000      | Goa       |
+| 205    | Sumit         | 50000      | Delhi     |
+
+La següent consulta ordena els salaris dels empleats en ordre descendent a partir de la taula `Employee_Order`:
+
+```sql
+SELECT * FROM Employee_Order 
+ORDER BY Emp_Salary DESC;
+```
+
+| **Emp_Id** | **Emp_Name** | **Emp_Salary** | **Emp_City** |
+|------------|--------------|----------------|--------------|
+| 204        | Anuj         | 90000          | Goa          |
+| 203        | Rashet       | 80000          | Jaipur       |
+| 205        | Sumit        | 50000          | Delhi        |
+| 201        | Jone         | 20000          | Goa          |
+| 202        | Basant       | 15000          | Delhi        |
