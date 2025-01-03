@@ -1,5 +1,5 @@
 <h1 align="center">Los sistemas de información en las organizaciones 
-<align="center">
+
   
 El **DML** (**Data Manipulation Language**) és una part fonamental de SQL que permet gestionar i manipular les dades emmagatzemades en una base de dades. Quan ens centrem exclusivament en les consultes, el principal objectiu és accedir i recuperar informació de manera eficient i personalitzada.
 
