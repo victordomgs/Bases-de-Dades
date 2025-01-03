@@ -6,9 +6,9 @@
 <a href="https://www.linkedin.com/in/v%C3%ADctor-garc%C3%ADa-saiz-/"><img src="https://img.shields.io/badge/LinkedIn-Perfil-%230077B5" alt="Perfil de LinkedIn"/></a>
 </a>
 
-</div>
 
----
+
+</div>
 
 El **DML** (Data Manipulation Language) és un conjunt d'instruccions dins del llenguatge SQL (Structured Query Language) que permet gestionar i manipular les dades emmagatzemades a una base de dades.
 
