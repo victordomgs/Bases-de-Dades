@@ -8,7 +8,7 @@
 
 </div>
 
-<br>
+---
 
 El **DML** (Data Manipulation Language) és un conjunt d'instruccions dins del llenguatge SQL (Structured Query Language) que permet gestionar i manipular les dades emmagatzemades a una base de dades.
 
