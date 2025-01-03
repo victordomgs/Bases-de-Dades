@@ -61,3 +61,59 @@ Obtindrem:
 | 205             | 20      | 75             | B1        |
 | 206             | 19      | 91             | C1        |
 | 207             | 20      | 80             | B2        |
+
+
+<table>
+  <thead>
+    <tr style="background-color: #D3D3D3;">
+      <th><b>Student_ID</b></th>
+      <th><b>Age</b></th>
+      <th><b>Percentage</b></th>
+      <th><b>Grade</b></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>201</td>
+      <td>18</td>
+      <td>89</td>
+      <td>A2</td>
+    </tr>
+    <tr>
+      <td>202</td>
+      <td>19</td>
+      <td>93</td>
+      <td>A1</td>
+    </tr>
+    <tr>
+      <td>203</td>
+      <td>20</td>
+      <td>89</td>
+      <td>A2</td>
+    </tr>
+    <tr>
+      <td>204</td>
+      <td>19</td>
+      <td>78</td>
+      <td>B1</td>
+    </tr>
+    <tr>
+      <td>205</td>
+      <td>20</td>
+      <td>75</td>
+      <td>B1</td>
+    </tr>
+    <tr>
+      <td>206</td>
+      <td>19</td>
+      <td>91</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <td>207</td>
+      <td>20</td>
+      <td>80</td>
+      <td>B2</td>
+    </tr>
+  </tbody>
+</table>
