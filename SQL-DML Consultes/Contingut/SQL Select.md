@@ -265,6 +265,8 @@ SELECT DISTINCT home_town
 FROM students;
 ```
 
+Obtindrem:
+
 | **HOME_TOWN** |
 |---------------|
 | Lucknow       |
