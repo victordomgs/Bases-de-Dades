@@ -231,3 +231,42 @@ ORDER BY Emp_Salary DESC;
 | 205        | Sumit        | 50000          | Delhi        |
 | 201        | Jone         | 20000          | Goa          |
 | 202        | Basant       | 15000          | Delhi        |
+
+## Sintaxi de la instrucció SELECT utilitzant la clàusula DISTINCT
+
+La instrucció **SQL DISTINCT** s'utilitza amb la paraula clau **SELECT** per recuperar només dades úniques o distintes.
+
+En una taula, pot existir la possibilitat que hi hagi valors duplicats, i en alguns casos volem recuperar només els valors únics. Per a aquests escenaris, s'utilitza la instrucció **SQL SELECT DISTINCT**.
+
+```sql
+SELECT DISTINCT column_name ,column_name  
+FROM  table_name;
+```
+
+### Exemple de l'ús de SELECT utilitzant la clàusula DISTINCT
+
+Imaginem que tenim la següent taula de dades: 
+
+```sql
+SELECT * FROM Student_Information;
+```
+
+| **Student_Name**    | **Gender** | **Mobile_Number** | **HOME_TOWN** |
+|----------------------|------------|--------------------|---------------|
+| Rahul Ojha          | Male       | 7503896532         | Lucknow       |
+| Disha Rai           | Female     | 9270568893         | Varanasi      |
+| Sonoo Jaiswal       | Male       | 9990449935         | Lucknow       |
+
+
+Volem extreure la informació referida a les diferents poblacions de les quals hi ha estudiants: 
+
+```sql
+SELECT DISTINCT home_town  
+FROM students;
+```
+
+| **HOME_TOWN** |
+|---------------|
+| Lucknow       |
+| Varanasi      |
+
