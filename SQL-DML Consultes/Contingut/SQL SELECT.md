@@ -64,7 +64,7 @@ Obtindrem:
 | 206             | 19      | 91             | C1        |
 | 207             | 20      | 80             | B2        |
 
----
+--
 
 ## Sintaxi de l'instrucció SELECT utilitzant la clàusula WHERE
 
