@@ -47,7 +47,9 @@ Explorem aquest tema amb més detall mitjançant exemples. Suposem que tenim una
 | 9   | Aakash Yadav       | 32  | Mumbai       | 43500  |
 | 10  | Sahil Sheikh       | 35  | Aurangabad   | 68800  |
 
-**Exemple 1: Escriviu una consulta per ordenar els registres en ordre ascendent dels noms de clients emmagatzemats a la taula de `customers`.**
+### Exemple 1: 
+
+Escriviu una consulta per ordenar els registres en ordre ascendent dels noms de clients emmagatzemats a la taula de `customers`.**
 
 ```sql
 SELECT *FROM customers ORDER BY Name ASC;  
