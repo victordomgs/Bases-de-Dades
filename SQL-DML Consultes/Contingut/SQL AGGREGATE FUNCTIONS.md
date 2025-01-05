@@ -85,5 +85,25 @@ FROM sales
 GROUP BY CATEGORY;
 ```
 
+**Exemples d'ús de la clàusula `HAVING`**
 
+La clàusula `HAVING` filtra els resultats després de l'agrupació.
 
+Imagina que, seguint amb la taula `sales` volem mostrar les categories amb una suma total superior a 500. 
+
+```sql
+SELECT CATEGORY, SUM(AMOUNT) AS Total_Amount
+FROM sales
+GROUP BY CATEGORY
+HAVING SUM(AMOUNT) > 500;
+```
+
+Obtindrem com a resultat: 
+
+| CATEGORY    | Total_Amount |
+|-------------|--------------|
+| Electronics | 2900         |
+| Furniture   | 900          |
+
+> [!IMPORTANT]  
+> `GROUP BY` s'ha de especificar sempre **abans** de `HAVING`.
