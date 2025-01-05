@@ -45,4 +45,49 @@ FROM table_name
 WHERE ([condition1] AND [condition2]) OR [condition3]...
 ```
 
+Explorem aquest tema amb més detall mitjançant exemples. Suposem que tenim una taula anomenada `customers` amb els següents registres:
+
+| ID  | NAME               | AGE | ADDRESS      | SALARY |
+|-----|--------------------|-----|--------------|--------|
+| 1   | Himani Gupta       | 21  | Modinagar    | 22000  |
+| 2   | Shiva Tiwari       | 22  | Bhopal       | 21000  |
+| 3   | Ajeet Bhargav      | 45  | Meerut       | 65000  |
+| 4   | Ritesh Yadav       | 36  | Azamgarh     | 26000  |
+| 5   | Balwant Singh      | 45  | Varanasi     | 36000  |
+| 6   | Mahesh Sharma      | 26  | Mathura      | 22000  |
+| 7   | Rohit Shrivastav   | 19  | Ahemdabad    | 38000  |
+| 8   | Neeru Sharma       | 29  | Pune         | 40000  |
+| 9   | Aakash Yadav       | 32  | Mumbai       | 43500  |
+| 10  | Sahil Sheikh       | 35  | Aurangabad   | 68800  |
+
 ### Exemple 1
+
+Escriviu una consulta per filtrar els clients que tenen menys de 40 anys i que tenen un salari superior o igual a 38000: 
+
+```sql
+SELECT *
+FROM customers  
+WHERE Age < 40 AND Salary >= 38000
+```
+
+Obtindriem els següents resultats: 
+
+| ID  | NAME               | AGE | ADDRESS      | SALARY |
+|-----|--------------------|-----|--------------|--------|
+| 7   | Rohit Shrivastav   | 19  | Ahemdabad    | 38000  |
+| 8   | Neeru Sharma       | 29  | Pune         | 40000  |
+| 9   | Aakash Yadav       | 32  | Mumbai       | 43500  |
+| 10  | Sahil Sheikh       | 35  | Aurangabad   | 68800  |
+
+
+### Exemple 2
+
+Utilitzem la condició lògica `OR`.
+
+Escriviu una consulta per filtrar els clients que o bé el seu nom comença per "A" o bé tenen un salari inferior o igual a 22000.
+
+> [!NOTE]  
+> Per filtrar els noms que comencen per "A" hem d'utilitzar la clàusula **LIKE**. La clàusula **LIKE** en SQL s'utilitza per cercar patrons específics en columnes de text. El símbol **%** substitueix qualsevol nombre de caràcters (incloent cap) dins del patró. Per exemple:
+> - `WHERE NAME LIKE 'A%'` retorna noms que comencen amb "A".
+> - `WHERE NAME LIKE '%sh%'` retorna noms que contenen "sh".
+> - `WHERE NAME LIKE '%A'` retorna noms que acaba amb "A".
