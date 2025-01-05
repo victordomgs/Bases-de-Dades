@@ -87,7 +87,53 @@ Utilitzem la condició lògica `OR`.
 Escriviu una consulta per filtrar els clients que o bé el seu nom comença per "A" o bé tenen un salari inferior o igual a 22000.
 
 > [!NOTE]  
-> Per filtrar els noms que comencen per "A" hem d'utilitzar la clàusula **LIKE**. La clàusula **LIKE** en SQL s'utilitza per cercar patrons específics en columnes de text. El símbol **%** substitueix qualsevol nombre de caràcters (incloent cap) dins del patró. Per exemple:
-> - `WHERE NAME LIKE 'A%'` retorna noms que comencen amb "A".
-> - `WHERE NAME LIKE '%sh%'` retorna noms que contenen "sh".
-> - `WHERE NAME LIKE '%A'` retorna noms que acaba amb "A".
+> Per filtrar els noms que comencen per "A" hem d'utilitzar la clàusula **LIKE**. La clàusula **LIKE** en SQL s'utilitza per cercar patrons específics en columnes de text (no és sensible a majúscules i minúscules en la majoria de SGBDs). El símbol **%** substitueix qualsevol nombre de caràcters (incloent cap) dins del patró. Per exemple:
+> - `WHERE name LIKE 'A%'` retorna noms que comencen amb "A".
+> - `WHERE name LIKE '%sh%'` retorna noms que contenen "sh".
+> - `WHERE name LIKE '%A'` retorna noms que acaba amb "A".
+
+Per tant, la consulta quedaria tal que: 
+
+```sql
+SELECT *
+FROM customers  
+WHERE Name LIKE 'A%' OR Salary <= 22000
+```
+
+| ID  | NAME               | AGE | ADDRESS      | SALARY |
+|-----|--------------------|-----|--------------|--------|
+| 1   | Himani Gupta       | 21  | Modinagar    | 22000  |
+| 3   | Ajeet Bhargav      | 45  | Meerut       | 65000  |
+| 6   | Mahesh Sharma      | 26  | Mathura      | 22000  |
+| 9   | Aakash Yadav       | 32  | Mumbai       | 43500  |
+
+### Exemple 3
+
+Escriviu una consula per filtrar eles clients que viuen a Mumbai i Modinagar.
+
+Una possible solució seria: 
+
+```sql
+SELECT *
+FROM customers  
+WHERE Address = 'Mumbai' OR Salary Address = 'Modinagar'
+```
+
+Però per no repetir dues vegades `Address`, podem utilitzar la clàusula `IN`. 
+
+> [!TIP]
+> La clàusula `IN` en SQL s'utilitza per especificar una llista de valors i verificar si una columna conté algun d’aquests valors. És una alternativa més compacta i llegible a múltiples condicions amb `OR`.
+
+```sql
+SELECT *
+FROM customers  
+WHERE Address IN ('Mumbai', 'Modinagar')
+```
+
+Obtenint d'aquesta manera els següents resultats: 
+
+| ID  | NAME               | AGE | ADDRESS      | SALARY |
+|-----|--------------------|-----|--------------|--------|
+| 1   | Himani Gupta       | 21  | Modinagar    | 22000  |
+| 9   | Aakash Yadav       | 32  | Mumbai       | 43500  |
+
