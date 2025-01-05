@@ -6,8 +6,8 @@ La clàusula **ORDER BY** en SQL ens permet ordenar els registres segons una col
 
 Amb la clàusula **ORDER BY**, podem ordenar els registres en ordre ascendent o descendent, segons les nostres necessitats.
 
-Si utilitzem la paraula clau **ASC**, els registres s’ordenaran en **ordre ascendent**.
-Si utilitzem la paraula clau **DESC**, s’ordenaran en **ordre descendent**.
+- Si utilitzem la paraula clau **ASC**, els registres s’ordenaran en **ordre ascendent**.
+- Si utilitzem la paraula clau **DESC**, s’ordenaran en **ordre descendent**.
 
 > [!IMPORTANT] 
 > Si no especifiquem cap paraula clau després de la columna sobre la qual volem ordenar els registres, l’ordre per defecte serà ascendent.
