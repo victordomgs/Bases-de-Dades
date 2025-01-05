@@ -59,7 +59,11 @@ Aquí, en una consulta `SELECT`, s'aplica una clàusula `ORDER BY` a la columna 
 
 > [!IMPORTANT]  
 > En el cas de ser una columna de tipus `varchar()`, els registres s'ordenen per ordre alfabètic.
-> També funcionaria: ```sql SELECT *FROM customers ORDER BY Name;```
+> 
+> També funcionaria:
+> ```sql
+> SELECT *FROM customers ORDER BY Name;
+> ```
 
 Obtindreu la següent sortida:
 
