@@ -49,7 +49,7 @@ Explorem aquest tema amb més detall mitjançant exemples. Suposem que tenim una
 
 ### Exemple 1: 
 
-Escriviu una consulta per ordenar els registres en ordre ascendent dels noms de clients emmagatzemats a la taula de `customers`.**
+Escriviu una consulta per ordenar els registres en **ordre ascendent** dels noms de clients emmagatzemats a la taula de `customers`.
 
 ```sql
 SELECT *FROM customers ORDER BY Name ASC;  
