@@ -179,7 +179,7 @@ La següent consulta mostra el salari total dels empleats que tenen un salari su
 SELECT Employee_City , SUM(Employee_Salary)
 FROM Employee_Having 
 GROUP BY Employee_City 
-HAVING SUM(Employee_Salary) > 5000;
+HAVING SUM(Employee_Salary) > 50000;
 ```
 |  **Employee_City** | **SUM(Employee_Salary)** |
 |---------------------------|--------------------|
