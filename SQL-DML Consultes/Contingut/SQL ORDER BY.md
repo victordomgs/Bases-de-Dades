@@ -14,6 +14,10 @@ Amb la clàusula **ORDER BY**, podem ordenar els registres en ordre ascendent o 
 
 Abans d’escriure les consultes per ordenar els registres, vegem la **sintaxi**.
 
+---
+
+## Sintaxi de l'instrucció SELECT en ORDER BY
+
 Sintaxi per ordenar els registres en ordre ascendent:
 
 ```sql
