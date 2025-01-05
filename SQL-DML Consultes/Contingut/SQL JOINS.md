@@ -61,7 +61,7 @@ Obtindriem el següent resultat:
 Retorna totes les files de la taula esquerra i les que coincideixen de la taula dreta. Si no hi ha coincidència, mostra `NULL` per les columnes de la taula dreta. Es pot expressar a través d'un diagrama de Venn: 
 
   <div style="text-align: center;">
-    <img src="" alt="INNER JOIN" width="260" height="auto"/>
+    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/images/leftjoin.png" alt="LEFT JOIN" width="260" height="auto"/>
   </div>
 
 Utilitzant les dues taules anteriors i la següent sentencia SQL: 
@@ -86,7 +86,7 @@ Obtindriem el següent resultat:
 És similar al **LEFT JOIN**, però retorna totes les files de la taula dreta i només les que coincideixen de la taula esquerra. Es pot expressar a través d'un diagrama de Venn: 
 
   <div style="text-align: center;">
-    <img src="" alt="INNER JOIN" width="260" height="auto"/>
+    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/images/rightjoin.png" alt="RIGHT JOIN" width="260" height="auto"/>
   </div>
 
 Utilitzant les dues taules anteriors i la següent sentencia SQL: 
@@ -111,7 +111,7 @@ Obtindriem el següent resultat:
 Retorna totes les files de les dues taules, i si no coincideixen, omple amb `NULL`. Es pot expressar a través d'un diagrama de Venn: 
 
   <div style="text-align: center;">
-    <img src="" alt="INNER JOIN" width="260" height="auto"/>
+    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/images/fullouterjoin.png" alt="FULL OUTER JOIN" width="260" height="auto"/>
   </div>
 
 Utilitzant les dues taules anteriors i la següent sentencia SQL: 
@@ -137,7 +137,7 @@ Obtindriem el següent resultat:
 Combina totes les files de la primera taula amb totes les de la segona, creant el producte cartesià. Es pot expressar a través d'un diagrama de Venn: 
 
   <div style="text-align: center;">
-    <img src="" alt="INNER JOIN" width="260" height="auto"/>
+    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/images/crossjoin.png" alt="CROSS JOIN" width="260" height="auto"/>
   </div>
 
 Utilitzant les dues taules anteriors i la següent sentencia SQL: 
