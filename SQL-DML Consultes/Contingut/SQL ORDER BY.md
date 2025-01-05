@@ -32,9 +32,7 @@ Sintaxi per ordenar els registres en ordre ascendent sense utilitzar la paraula 
 SELECT ColumnName1,...,ColumnNameN FROM TableName ORDER BY ColumnName1; 
 ```
 
-Explorem aquest tema amb més detall mitjançant exemples. Farem servir la base de dades MySQL per escriure les consultes dels exemples.
-
-Suposem que tenim una taula anomenada `customers` amb els següents registres:
+Explorem aquest tema amb més detall mitjançant exemples. Suposem que tenim una taula anomenada `customers` amb els següents registres:
 
 | ID  | NAME               | AGE | ADDRESS      | SALARY |
 |-----|--------------------|-----|--------------|--------|
