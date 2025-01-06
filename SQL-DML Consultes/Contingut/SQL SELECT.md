@@ -239,7 +239,7 @@ La instrucció **SQL DISTINCT** s'utilitza amb la paraula clau **SELECT** per re
 En una taula, pot existir la possibilitat que hi hagi valors duplicats, i en alguns casos volem recuperar només els valors únics. Per a aquests escenaris, s'utilitza la instrucció **SQL SELECT DISTINCT**.
 
 ```sql
-SELECT DISTINCT column_name ,column_name  
+SELECT DISTINCT column_name1 ,column_name2  
 FROM  table_name;
 ```
 
