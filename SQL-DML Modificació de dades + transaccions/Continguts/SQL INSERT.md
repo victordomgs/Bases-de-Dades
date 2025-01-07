@@ -1,6 +1,6 @@
 # Com utilitzar la funció INSERT en SQL
 
-La funció `INSERT` s'utilitza en SQL per afegir noves files (registres) a una taula d'una base de dades. Aquesta és una de les operacions més bàsiques i importants en la manipulació de dades.
+La funció `INSERT` s'utilitza en SQL per afegir noves files (registres) a una taula d'una base de dades.
 
 ---
 
