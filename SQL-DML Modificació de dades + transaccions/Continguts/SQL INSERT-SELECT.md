@@ -1,8 +1,6 @@
-# Inserir Dates a Través d'una Sentència SELECT en SQL
+# Inserir Dades a Través d'una Sentència SELECT en SQL
 
-En SQL, pots inserir dates en una taula utilitzant una sentència `INSERT INTO ... SELECT`. Aquesta tècnica és útil quan necessites copiar dades d'una altra taula o generar dades basades en una selecció.
-
-A continuació, es presenta una explicació detallada de com inserir dates en diferents situacions.
+En SQL, pots inserir dades en una taula utilitzant una sentència `INSERT INTO ... SELECT`. Aquesta tècnica és útil quan necessites copiar dades d'una altra taula o generar dades basades en una selecció.
 
 ## Estructura General
 
