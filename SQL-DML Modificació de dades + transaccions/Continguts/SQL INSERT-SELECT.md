@@ -1,8 +1,8 @@
-# Inserir Dades a Través d'una Sentència SELECT en SQL
+# Inserir dades a través d'una sentència SELECT
 
 En SQL, pots inserir dades en una taula utilitzant una sentència `INSERT INTO ... SELECT`. Aquesta tècnica és útil quan necessites copiar dades d'una altra taula o generar dades basades en una selecció.
 
-## Estructura General
+## Estructura general
 
 La sintaxi bàsica per inserir dades mitjançant una selecció és:
 
@@ -22,9 +22,9 @@ WHERE condició;
 
 ---
 
-## Exemple Pràctic
+## Exemple pràctic
 
-### Taules Inicials
+### Taules inicials
 
 Suposem que tenim dues taules: 
 
@@ -48,7 +48,7 @@ CREATE TABLE nous_empleats (
 
 Volem inserir dades de la taula `nous_empleats` a la taula `empleats`.
 
-### Inserir Dades
+### Inserir dades
 
 #### Inserir directament de la taula origen
 
@@ -62,14 +62,14 @@ FROM nous_empleats;
 
 #### Explicació
 - **`INSERT INTO empleats`**: Especifica que inserirem dades a la taula `empleats`.
-- **Columnes especificades**: `id`, `nom`, `departament_id` són les columnes on col·locarem els valors.
+- **`columnes`**: `id`, `nom`, `departament_id` són les columnes on col·locarem els valors.
 - **`SELECT`**: Selecciona dades de la taula `nous_empleats`.
 
 ---
 
-## Inserir Dades Amb Transformacions
+## Inserir dades Amb transformacions
 
-### Inserir Amb Dades Calculades
+### Inserir amb dades calculades
 
 També pots transformar o calcular els valors durant la selecció abans d'inserir-los. Per exemple, suposem que volem afegir un prefix al nom dels empleats abans d'inserir-los:
 
@@ -112,13 +112,7 @@ WHERE departament_id = 2;
 #### Explicació
 - **`WHERE departament_id = 2`**: Només les files de la taula `nous_empleats` amb `departament_id = 2` s'inseriran a `empleats`.
 
----
-
-## Comprovar Integritat de les Dades
-
-Quan treballes amb dades a inserir, assegura't que:
-
-1. Els tipus de dades de les columnes seleccionades coincideixin amb els de les columnes de la taula destinació.
-2. Les restriccions de la taula destinació (com claus primàries o valors únics) no es violin.
-
-Per exemple, si `id` és una clau primària a la taula `empleats`, no pots inserir dues files amb el mateix `id`.
+> [!IMPORTANT]  
+> Quan treballes amb dades a inserir, assegura't que:
+> 1. Els tipus de dades de les columnes seleccionades coincideixin amb els de les columnes de la taula destinació.
+> 2. Les restriccions de la taula destinació (com claus primàries o valors únics) no es violin. Per exemple, si `id` és una clau primària a la taula `empleats`, no pots inserir dues files amb el mateix `id`.
