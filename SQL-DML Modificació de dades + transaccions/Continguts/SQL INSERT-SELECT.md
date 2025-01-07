@@ -15,7 +15,7 @@ WHERE condició;
 
 ### Components:
 - **`taula_destinació`**: La taula on s'inseriran les dades.
-- **Columnes**: Llista de columnes de la taula destinació on es col·locaran els valors.
+- **`columnes`**: Llista de columnes de la taula destinació on es col·locaran els valors.
 - **`SELECT`**: La selecció que genera les dades a inserir.
 - **`taula_origen`**: La taula d'on provenen les dades (pot ser una taula existent o una selecció més complexa).
 - **`WHERE`** (opcional): Condició per filtrar les dades de la taula origen.
