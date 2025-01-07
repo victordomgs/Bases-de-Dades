@@ -104,6 +104,7 @@ CREATE TABLE nous_empleats (
     nom VARCHAR(100),
     departament_id INT
 );
+```
 
 | id  | nom    | departament_id |
 |-----|--------|----------------|
