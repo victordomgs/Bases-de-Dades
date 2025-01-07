@@ -19,6 +19,8 @@ VALUES (valor1, valor2, valor3, ...);
 
 ## **Exemple bàsic**
 
+Suposem que tenim una taula anomenada `usuaris` amb les següent columnes:
+
 ```sql
 CREATE TABLE Usuaris (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -27,8 +29,6 @@ CREATE TABLE Usuaris (
     edat INT NOT NULL
 );
 ```
-
-Suposem que tenim una taula anomenada `usuaris` amb les següent columnes:
 
 | id | nom     | correu                | edat |
 |----|---------|-----------------------|------|
