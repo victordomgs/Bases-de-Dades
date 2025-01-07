@@ -7,15 +7,15 @@ En SQL, pots inserir dades en una taula utilitzant una sentència `INSERT INTO .
 La sintaxi bàsica per inserir dades mitjançant una selecció és:
 
 ```sql
-INSERT INTO taula_destinació (columna1, columna2, columna_data, ...)
-SELECT valor1, valor2, data_valor, ...
+INSERT INTO taula_destinació (columna1, columna2, ...)
+SELECT valor1, valor2, ...
 FROM taula_origen
 WHERE condició;
 ```
 
 ### Components:
 - **`taula_destinació`**: La taula on s'inseriran les dades.
-- **`columnes`**: Llista de columnes de la taula destinació on es col·locaran els valors.
+- **Columnes**: Llista de columnes de la taula destinació on es col·locaran els valors.
 - **`SELECT`**: La selecció que genera les dades a inserir.
 - **`taula_origen`**: La taula d'on provenen les dades (pot ser una taula existent o una selecció més complexa).
 - **`WHERE`** (opcional): Condició per filtrar les dades de la taula origen.
@@ -28,103 +28,97 @@ WHERE condició;
 
 Suposem que tenim dues taules: 
 
-#### Taula `esdeveniments`
+#### Taula `empleats`
 ```sql
-CREATE TABLE esdeveniments (
+CREATE TABLE empleats (
     id INT PRIMARY KEY,
     nom VARCHAR(100),
-    data_inici DATE
+    departament_id INT
 );
 ```
 
-#### Taula `activitats`
+#### Taula `nous_empleats`
 ```sql
-CREATE TABLE activitats (
+CREATE TABLE nous_empleats (
     id INT PRIMARY KEY,
-    nom_activitat VARCHAR(100),
-    data_activitat DATE
+    nom VARCHAR(100),
+    departament_id INT
 );
 ```
 
-Volem inserir dades a la taula `activitats` a partir dels esdeveniments, reutilitzant el nom de l'esdeveniment i la data d'inici.
+Volem inserir dades de la taula `nous_empleats` a la taula `empleats`.
 
-### Inserir Dades Amb Dates
+### Inserir Dades
 
 #### Inserir directament de la taula origen
 
-Podem copiar les dades de la taula `esdeveniments` a `activitats` utilitzant una sentència `SELECT`:
+Podem copiar les dades de la taula `nous_empleats` a `empleats` utilitzant una sentència `SELECT`:
 
 ```sql
-INSERT INTO activitats (id, nom_activitat, data_activitat)
-SELECT id, nom, data_inici
-FROM esdeveniments
-WHERE data_inici >= '2025-01-01';
+INSERT INTO empleats (id, nom, departament_id)
+SELECT id, nom, departament_id
+FROM nous_empleats;
 ```
 
 #### Explicació
-- **`INSERT INTO activitats`**: Especifica que inserirem dades a la taula `activitats`.
-- **Columnes especificades**: `id`, `nom_activitat`, `data_activitat` són les columnes on col·locarem els valors.
-- **`SELECT`**: Selecciona dades de la taula `esdeveniments`.
-- **Filtre `WHERE`**: Només s'inseriran els registres on la data d'inici sigui igual o posterior a l'1 de gener de 2025.
+- **`INSERT INTO empleats`**: Especifica que inserirem dades a la taula `empleats`.
+- **Columnes especificades**: `id`, `nom`, `departament_id` són les columnes on col·locarem els valors.
+- **`SELECT`**: Selecciona dades de la taula `nous_empleats`.
 
 ---
 
-## Inserir una Data Fixa o Calculada
+## Inserir Dades Amb Transformacions
 
-### Inserir amb una Data Fixa
+### Inserir Amb Dades Calculades
 
-Si necessites inserir una data fixa, pots especificar-la directament en la sentència `SELECT`:
+També pots transformar o calcular els valors durant la selecció abans d'inserir-los. Per exemple, suposem que volem afegir un prefix al nom dels empleats abans d'inserir-los:
 
 ```sql
-INSERT INTO activitats (id, nom_activitat, data_activitat)
-SELECT id, nom, '2025-01-01'
-FROM esdeveniments;
+INSERT INTO empleats (id, nom, departament_id)
+SELECT id, CONCAT('Nou-', nom), departament_id
+FROM nous_empleats;
 ```
 
 #### Explicació
-- En lloc de copiar la data de la taula origen, s'insereix la data fixa `'2025-01-01'` a la columna `data_activitat`.
+- **`CONCAT`**: S'utilitza per concatenar una cadena de text amb el valor de la columna `nom`.
+- El nom dels empleats inserits tindrà el prefix `Nou-`.
 
-### Inserir amb una Data Calculada
+### Inserir Amb Valors Fixos
 
-També pots calcular una nova data basada en una data existent utilitzant funcions com `DATE_ADD`:
+Si necessites inserir un valor fix per a una columna, pots especificar-lo directament en la sentència `SELECT`:
 
 ```sql
-INSERT INTO activitats (id, nom_activitat, data_activitat)
-SELECT id, nom, DATE_ADD(data_inici, INTERVAL 7 DAY)
-FROM esdeveniments;
+INSERT INTO empleats (id, nom, departament_id)
+SELECT id, nom, 1
+FROM nous_empleats;
 ```
 
 #### Explicació
-- **`DATE_ADD`**: S'utilitza per sumar dies a una data. En aquest cas, s'afegeixen 7 dies a la data d'inici de cada esdeveniment.
-- La nova data calculada s'insereix a la columna `data_activitat`.
+- En lloc de copiar el valor de la columna `departament_id` de la taula origen, s'insereix el valor fix `1` a totes les files.
 
 ---
 
-## Comprovar el Format de la Data
+## Inserir Amb Condicions
 
-Quan treballes amb dates, assegura't que el format sigui compatible amb el tipus de dada `DATE` o `DATETIME` de la base de dades. Si necessites convertir formats, pots utilitzar funcions com `STR_TO_DATE()` en MySQL.
-
-### Exemple amb Conversió de Format
+Pots utilitzar una condició per filtrar quines dades s'inseriran a la taula destinació. Per exemple, només volem inserir els empleats que pertanyen al departament 2:
 
 ```sql
-INSERT INTO activitats (id, nom_activitat, data_activitat)
-SELECT id, nom, STR_TO_DATE('31-12-2025', '%d-%m-%Y')
-FROM esdeveniments;
+INSERT INTO empleats (id, nom, departament_id)
+SELECT id, nom, departament_id
+FROM nous_empleats
+WHERE departament_id = 2;
 ```
 
 #### Explicació
-- **`STR_TO_DATE`**: Converteix una cadena de text a un format de data (`'%d-%m-%Y'` en aquest cas, representant dia-mes-any).
-- La data convertida s'insereix a la columna `data_activitat`.
+- **`WHERE departament_id = 2`**: Només les files de la taula `nous_empleats` amb `departament_id = 2` s'inseriran a `empleats`.
 
 ---
 
-## Resum
+## Comprovar Integritat de les Dades
 
-La inserció de dates a través d'una sentència `SELECT` és molt versàtil i permet:
+Quan treballes amb dades a inserir, assegura't que:
 
-1. Copiar dades existents amb dates.
-2. Assignar dates fixes.
-3. Generar dates calculades utilitzant funcions com `DATE_ADD`.
-4. Gestionar formats de dates utilitzant funcions com `STR_TO_DATE`.
+1. Els tipus de dades de les columnes seleccionades coincideixin amb els de les columnes de la taula destinació.
+2. Les restriccions de la taula destinació (com claus primàries o valors únics) no es violin.
 
-Aquest enfocament és ideal quan necessites manipular o transferir dades entre taules mentre treballes amb valors de data.
+Per exemple, si `id` és una clau primària a la taula `empleats`, no pots inserir dues files amb el mateix `id`.
