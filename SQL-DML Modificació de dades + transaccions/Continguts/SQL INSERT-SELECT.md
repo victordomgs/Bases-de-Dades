@@ -67,7 +67,7 @@ FROM nous_empleats;
 
 ---
 
-## Inserir dades Amb transformacions
+## Inserir dades amb transformacions
 
 ### Inserir amb dades calculades
 
@@ -83,7 +83,7 @@ FROM nous_empleats;
 - **`CONCAT`**: S'utilitza per concatenar una cadena de text amb el valor de la columna `nom`.
 - El nom dels empleats inserits tindrà el prefix `Nou-`.
 
-### Inserir Amb Valors Fixos
+### Inserir amb valors fixos
 
 Si necessites inserir un valor fix per a una columna, pots especificar-lo directament en la sentència `SELECT`:
 
@@ -98,7 +98,7 @@ FROM nous_empleats;
 
 ---
 
-## Inserir Amb Condicions
+## Inserir amb condicions
 
 Pots utilitzar una condició per filtrar quines dades s'inseriran a la taula destinació. Per exemple, només volem inserir els empleats que pertanyen al departament 2:
 
