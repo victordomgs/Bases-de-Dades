@@ -78,6 +78,7 @@ Resultat:
 
 > [!IMPORTANT]  
 > **Usar sempre la clausula `WHERE` amb cura**: Sense una condició específica, es poden modificar totes les files de la taula, provocant resultats inesperats.
+> 
 > **Provar amb una consulta `SELECT` primer**: Executar una consulta `SELECT` amb la mateixa condició que el `WHERE` per verificar quines files seran afectades.
 
 ## Exemple amb subconsulta
