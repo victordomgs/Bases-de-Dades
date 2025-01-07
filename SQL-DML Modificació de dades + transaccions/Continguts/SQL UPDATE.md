@@ -76,10 +76,9 @@ Resultat:
 | 2    | Joan        | General     | 4000  |
 | 3    | Maria       | General     | 3200  |
 
-## Recomanacions importants
-
-1. **Usar sempre la clausula `WHERE` amb cura**: Sense una condició específica, es poden modificar totes les files de la taula, provocant resultats inesperats.
-3. **Provar amb una consulta `SELECT` primer**: Executar una consulta `SELECT` amb la mateixa condició que el `WHERE` per verificar quines files seran afectades.
+> [!IMPORTANT]  
+> **Usar sempre la clausula `WHERE` amb cura**: Sense una condició específica, es poden modificar totes les files de la taula, provocant resultats inesperats.
+> **Provar amb una consulta `SELECT` primer**: Executar una consulta `SELECT` amb la mateixa condició que el `WHERE` per verificar quines files seran afectades.
 
 ## Exemple amb subconsulta
 També es poden utilitzar subconsultes per calcular els valors a assignar. Suposem que volem augmentar el sou de tots els empleats al mateix nivell que el sou més alt de la taula:
