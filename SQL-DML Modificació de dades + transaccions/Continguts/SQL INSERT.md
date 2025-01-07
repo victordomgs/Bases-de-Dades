@@ -19,6 +19,15 @@ VALUES (valor1, valor2, valor3, ...);
 
 ## **Exemple bàsic**
 
+```sql
+CREATE TABLE Usuaris (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    edat INT NOT NULL
+);
+```
+
 Suposem que tenim una taula anomenada `usuaris` amb les següent columnes:
 
 | id | nom     | correu                | edat |
@@ -76,6 +85,10 @@ Aquest codi inserirà tres nous registres en la taula `usuaris`.
      INSERT INTO usuaris (nom, correu, edat)
      VALUES ('Guillem', NULL, 29);
      ```
+> [!IMPORTANT]  
+> No podem inserir valors `NULL` en algun d'aquests supòsits:
+> 1. Restricció `NOT NULL`. Si una columna té la restricció `NOT NULL, no se li permeten valors `NULL`.
+> 2. Les claus primàries no poden contenir valors `NULL`. Això és perquè una clau primària ha de ser única i no pot estar buida per identificar de manera unívoca un registre en una taula.
 
 2. **Tipus de dades**:
    - Assegura't que els valors inserits coincideixen amb els tipus de dades definits per cada columna (per exemple, text, enter, data, etc.).
