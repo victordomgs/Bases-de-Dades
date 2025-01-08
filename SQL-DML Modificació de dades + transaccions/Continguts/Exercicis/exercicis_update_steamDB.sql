@@ -4,7 +4,7 @@
 ********************************************************************************/
 
 -- **Exercici 1: Actualitzar desenvolupadors**
--- 1. Canvieu el país del desenvolupador japonès a "Japó".
+-- 1. Canvieu el país del desenvolupador japonès a "Asia".
 -- 2. Actualitzeu el nom de l'estudi nord-americà per afegir-hi "Studios".
 -- 3. Modifiqueu el nom del desenvolupador polonès per incloure-hi "(Polònia)".
 
