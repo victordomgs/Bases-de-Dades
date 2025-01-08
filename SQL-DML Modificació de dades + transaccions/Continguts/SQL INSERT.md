@@ -87,7 +87,7 @@ Aquest codi inserirà tres nous registres en la taula `usuaris`.
      ```
 > [!IMPORTANT]  
 > No podem inserir valors `NULL` en algun d'aquests supòsits:
-> 1. Restricció `NOT NULL`. Si una columna té la restricció `NOT NULL, no se li permeten valors `NULL`.
+> 1. Restricció `NOT NULL`. Si una columna té la restricció `NOT NULL`, no se li permeten valors `NULL`.
 > 2. Les claus primàries no poden contenir valors `NULL`. Això és perquè una clau primària ha de ser única i no pot estar buida per identificar de manera unívoca un registre en una taula.
 
 2. **Tipus de dades**:
