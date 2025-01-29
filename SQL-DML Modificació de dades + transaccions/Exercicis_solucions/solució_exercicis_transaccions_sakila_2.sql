@@ -49,7 +49,7 @@ VALUES (1, 'John', 'Doe', 'john.doe@example.com', LAST_INSERT_ID(), 1, NOW());
 
 COMMIT;
 
-/*Crea una nova ciutat amb el seu districte.*/
+/*Crea una nova ciutat.*/
 START TRANSACTION;
 
 INSERT INTO city (city, country_id, last_update)
