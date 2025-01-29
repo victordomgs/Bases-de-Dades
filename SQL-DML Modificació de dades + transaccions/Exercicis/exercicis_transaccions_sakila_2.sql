@@ -10,6 +10,6 @@
 
 /*Afegeix un nou client amb una adreça fictícia.*/
 
-/*Crea una nova ciutat amb el seu districte.*/
+/*Crea una nova ciutat.*/
 
 /*Afegeix una nova pel·lícula al catàleg.*/
