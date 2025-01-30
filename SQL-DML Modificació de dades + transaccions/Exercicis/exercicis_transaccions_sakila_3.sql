@@ -30,7 +30,7 @@
 
 /*11. Disminueix un 10% la quantitat dels pagaments fets al juliol del 2005.*/
 
-/*12. Esborra el client o els clients que hagin fet només un lloguer.*/
+/*12. Esborra el client o els clients que hagin fet 20 llogues o menys.*/
 
 /*13. Esborra la pel·lícula que dura menys de la BD.*/
 
