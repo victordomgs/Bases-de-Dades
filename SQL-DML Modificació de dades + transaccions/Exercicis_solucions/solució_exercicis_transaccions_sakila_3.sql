@@ -129,7 +129,7 @@ COMMIT;
 /*12. Esborra el client o els clients que hagin fet només un lloguer.*/
 START TRANSACTION;
 
-SET @customer_todelete = SELECT GROUP_CONCAT(customer_id) FROM (SELECT customer_id FROM rental GROUP BY customer_id HAVING COUNT(rental_id) = 1) AS temp_customers;
+SET @customer_todelete = SELECT GROUP_CONCAT(customer_id) FROM (SELECT customer_id FROM rental GROUP BY customer_id HAVING COUNT(rental_id) <= 1) AS temp_customers;
 
 DELETE FROM rental WHERE FIND_IN_SET(customer_id, @customer_todelete);
 
