@@ -9,7 +9,7 @@
 
 /*1. Afegeix-te com a client a la botiga. No cal que posis dades reals, a part del teu nom i cognom, però has d’omplir correctament tots els camps.*/
 
-/*2. Volem introduir un nou artista i algun dels seus àlbums a la base de dades. L’artista es diu M.I.A. i l’àlbum que volem introduir és Kala. Pots consultar la llista de les cançons a https://en.wikipedia.org/wiki/Kala_%28album%29.*/
+/*2. Volem introduir un nou artista i algun dels seus àlbums a la base de dades. L’artista es diu M.I.A. i l’àlbum que volem introduir és Kala. Pots consultar la llista dels àlbums a https://en.wikipedia.org/wiki/Kala_%28album%29.*/
 
 /*3. Crea una nova llista de reproducció i afegeix-hi almenys 5 cançons (que ja estiguin a la base de dades).*/
 
