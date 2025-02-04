@@ -119,7 +119,3 @@ ALTER DATABASE exemple_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 -- Eliminació segura de la base de dades
 DROP DATABASE IF EXISTS exemple_db;
 ```
-
----
-
-Aquest document cobreix les operacions essencials per crear, modificar i eliminar bases de dades en SQL, amb enfocament en la seguretat i bones pràctiques.
