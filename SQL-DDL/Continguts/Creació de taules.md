@@ -1,12 +1,6 @@
 # Creació de Taules
 
-## 1. Introducció
-
-La creació de taules és un dels aspectes fonamentals en la definició d'una base de dades. Una taula emmagatzema dades en forma de files i columnes, i la seva estructura ha d'estar ben dissenyada per garantir la integritat i eficiència de les operacions sobre les dades.
-
----
-
-## 2. Sintaxi Bàsica
+## 1. Sintaxi Bàsica
 
 La sintaxi general per crear una taula és:
 
@@ -39,7 +33,7 @@ Aquest exemple defineix una taula `clients` amb:
 
 ---
 
-## 3. Tipus de Dades
+## 2. Tipus de Dades
 
 Seleccionar el tipus de dada correcte és essencial per a un bon disseny de taula. Alguns dels tipus més comuns són:
 
@@ -67,7 +61,7 @@ Aquest disseny assegura que el `preu` sempre sigui positiu i estableix un valor 
 
 ---
 
-## 4. Restriccions i Constrenyiments (*Constraints*)
+## 3. Restriccions (*Constraints*)
 
 Les restriccions ajuden a garantir la integritat de les dades.
 
@@ -100,27 +94,27 @@ Aquesta estructura:
 
 ---
 
-## 5. Bones Pràctiques en la Creació de Taules
+## 4. Bones Pràctiques en la Creació de Taules
 
-### **5.1. Utilitzar noms descriptius**
+### **4.1. Utilitzar noms descriptius**
 - Evita noms genèrics com `taula1` o `dades`.
 - Usa noms en singular (`usuari` en lloc de `usuaris` si cada fila representa un usuari).
 
-### **5.2. Evitar tipus de dades innecessàriament grans**
+### **4.2. Evitar tipus de dades innecessàriament grans**
 - No usar `TEXT` si `VARCHAR(255)` és suficient.
 - Evita `BIGINT` si `INT` cobreix les necessitats.
 
-### **5.3. Definir claus primàries i estrangeres sempre que sigui possible**
+### **4.3. Definir claus primàries i estrangeres sempre que sigui possible**
 - Les claus primàries ajuden a l'indexació i eficiència de cerques.
 - Les claus foranes mantenen la coherència entre taules.
 
-### **5.4. Utilitzar valors per defecte i restriccions per evitar errors**
+### **4.4. Utilitzar valors per defecte i restriccions per evitar errors**
 - Assignar `DEFAULT` quan tingui sentit.
 - Aplicar `NOT NULL` quan la dada sigui obligatòria.
 
 ---
 
-## 6. Exemple Complet
+## 5. Exemple Complet
 
 ```sql
 CREATE TABLE categories (
