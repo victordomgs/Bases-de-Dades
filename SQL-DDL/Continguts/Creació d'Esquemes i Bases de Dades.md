@@ -1,12 +1,8 @@
 # Creació d'Esquemes i Bases de Dades
 
-## 1. Introducció
+## 1. Creació d'una Base de Dades
 
-El **Data Definition Language (DDL)** inclou les instruccions per crear, modificar i esborrar estructures de bases de dades. 
-
-## 2. Creació d'una Base de Dades
-
-### **2.1. Sintaxi bàsica**
+### **1.1. Sintaxi bàsica**
 
 Per crear una base de dades en SQL, s'utilitza la instrucció `CREATE DATABASE`:
 
@@ -14,7 +10,7 @@ Per crear una base de dades en SQL, s'utilitza la instrucció `CREATE DATABASE`:
 CREATE DATABASE nom_de_la_base_de_dades;
 ```
 
-### **2.2. Definició de Codificació i Col·lació**
+### **1.2. Definició de Codificació i Col·lació**
 
 En molts SGBD, podem definir la codificació de caràcters i la col·lació (ordre de classificació de text). Exemples:
 
@@ -27,7 +23,7 @@ COLLATE utf8mb4_general_ci;
 - `CHARACTER SET utf8mb4`: Defineix el joc de caràcters per suportar emojis i idiomes diversos.
 - `COLLATE utf8mb4_general_ci`: Defineix com es comparen i ordenen les dades textuals.
 
-### **2.3. Comprovar si la base de dades ja existeix**
+### **1.3. Comprovar si la base de dades ja existeix**
 
 Per evitar errors si la base de dades ja existeix:
 
@@ -39,9 +35,9 @@ Aquesta instrucció només crearà la base de dades si no existeix prèviament.
 
 ---
 
-## 3. Eliminació d'una Base de Dades
+## 2. Eliminació d'una Base de Dades
 
-### **3.1. Sintaxi per eliminar una base de dades**
+### **2.1. Sintaxi per eliminar una base de dades**
 
 ```sql
 DROP DATABASE nom_de_la_base_de_dades;
@@ -49,7 +45,7 @@ DROP DATABASE nom_de_la_base_de_dades;
 
 Aquesta ordre **esborra completament** la base de dades i totes les seves taules, per tant, cal fer-ho amb precaució.
 
-### **3.2. Evitar errors si la base de dades no existeix**
+### **2.2. Evitar errors si la base de dades no existeix**
 
 ```sql
 DROP DATABASE IF EXISTS exemple_db;
@@ -59,9 +55,9 @@ Aquest enfocament evita errors si la base de dades no existeix.
 
 ---
 
-## 4. Modificació d'una Base de Dades
+## 3. Modificació d'una Base de Dades
 
-### **4.1. Modificar la col·lació o codificació**
+### **3.1. Modificar la col·lació o codificació**
 
 ```sql
 ALTER DATABASE exemple_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -71,7 +67,7 @@ Aquesta ordre canvia la codificació i col·lació de la base de dades, però no
 
 ---
 
-## 5. Llistat de Bases de Dades
+## 4. Llistat de Bases de Dades
 
 Per veure les bases de dades disponibles en un SGBD:
 
@@ -94,7 +90,7 @@ Exemple de sortida:
 
 ---
 
-## 6. Seleccionar una Base de Dades
+## 5. Seleccionar una Base de Dades
 
 Abans de treballar amb una base de dades, cal seleccionar-la:
 
@@ -106,7 +102,7 @@ Aquesta ordre estableix `exemple_db` com la base de dades activa per a les opera
 
 ---
 
-## 7. Exemple Complet
+## 6. Exemple Complet
 
 ```sql
 -- Creació de la base de dades
