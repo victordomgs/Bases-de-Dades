@@ -1,6 +1,6 @@
 # Creació de Taules
 
-## 1. Sintaxi Bàsica
+## 1. Sintaxi bàsica
 
 La sintaxi general per crear una taula és:
 
@@ -33,7 +33,7 @@ Aquest exemple defineix una taula `clients` amb:
 
 ---
 
-## 2. Tipus de Dades
+## 2. Tipus de dades
 
 Seleccionar el tipus de dada correcte és essencial per a un bon disseny de taula. Alguns dels tipus més comuns són:
 
@@ -94,7 +94,7 @@ Aquesta estructura:
 
 ---
 
-## 4. Bones Pràctiques en la Creació de Taules
+## 4. Bones pràctiques en la creació de taules
 
 ### **4.1. Utilitzar noms descriptius**
 - Evita noms genèrics com `taula1` o `dades`.
@@ -104,7 +104,7 @@ Aquesta estructura:
 - No usar `TEXT` si `VARCHAR(255)` és suficient.
 - Evita `BIGINT` si `INT` cobreix les necessitats.
 
-### **4.3. Definir claus primàries i estrangeres sempre que sigui possible**
+### **4.3. Definir claus primàries i foranas sempre que sigui possible**
 - Les claus primàries ajuden a l'indexació i eficiència de cerques.
 - Les claus foranes mantenen la coherència entre taules.
 
@@ -114,7 +114,7 @@ Aquesta estructura:
 
 ---
 
-## 5. Exemple Complet
+## 5. Exemple complet
 
 ```sql
 CREATE TABLE categories (
