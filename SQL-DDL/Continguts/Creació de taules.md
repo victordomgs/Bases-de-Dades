@@ -20,7 +20,7 @@ CREATE TABLE clients (
     nom VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE,
     telefon VARCHAR(15),
-    data_registre DATE DEFAULT CURRENT_DATE
+    data_registre TIMESTAMP DEFAULT TIMESTAMP
 );
 ```
 
