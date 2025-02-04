@@ -142,7 +142,3 @@ Aquest disseny:
 - Garanteix que cada categoria tingui un nom únic.
 - Enllaça `productes` amb `categories` mitjançant `categoria_id`.
 - Limita `preu` perquè només accepti valors positius.
-
----
-
-Amb aquests conceptes i bones pràctiques, la creació de taules serà eficient i escalable en bases de dades relacionals.
