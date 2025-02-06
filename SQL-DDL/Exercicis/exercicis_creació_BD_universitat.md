@@ -6,17 +6,17 @@
 
 **Countries**(<ins>name</ins>, population)
 
-**Universities**(<ins>code_university</ins>, name, country)
+**Universities**(<ins>code_university</ins>, name, country)<br>
   on *country* referencia *Countries*.
   
-**Students**(<ins>code_student</ins>, firstName, lastName, Phone, Country, university_code)
-  on *country* referencia *Countries*.
+**Students**(<ins>code_student</ins>, firstName, lastName, Phone, Country, university_code)<br>
+  on *country* referencia *Countries*.<br>
   on *university_code* referencia *Universities*.
 
 **Degrees**(<ins>name</ins>)
 
-**DegreeOffer**(<ins>university_code</ins>, <ins>degree_name</ins>, score, capacity)
-  on *university_code* referencia *Universities*.
+**DegreeOffer**(<ins>university_code</ins>, <ins>degree_name</ins>, score, capacity)<br>
+  on *university_code* referencia *Universities*.<br>
   on *degree_name* referencia *Degrees*.
 
 <br>
