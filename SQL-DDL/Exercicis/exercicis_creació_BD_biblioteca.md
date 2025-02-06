@@ -15,6 +15,8 @@
   on *usuari_id* referencia *Usuaris*.
   on *llibre_id* referencia *Llibres*.
 
+<br>
+
 <ins>**Diagrama E/R**</ins>
 
   <div style="text-align: center;">
