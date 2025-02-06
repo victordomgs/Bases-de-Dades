@@ -1,8 +1,8 @@
-# Creació de Vistes
+# Creació de vistes
 
-## 1. Creació d'una Vista
+## 1. Creació d'una vista
 
-### **1.1. Sintaxi Bàsica**
+### **1.1. Sintaxi bàsica**
 
 La sintaxi per crear una vista és:
 
@@ -24,9 +24,9 @@ Aquesta vista permet accedir només a les columnes `id`, `nom` i `email` de la t
 
 ---
 
-## 2. Avantatges de les Vistes
+## 2. Avantatges de les vistes
 
-### **2.1. Simplificació de Consultes**
+### **2.1. Simplificació de consultes**
 - Permeten reutilitzar consultes complexes sense haver d'escriure-les repetidament.
 - Exemple:
   ```sql
@@ -38,7 +38,7 @@ Aquesta vista permet accedir només a les columnes `id`, `nom` i `email` de la t
   SELECT * FROM clients_actius;
   ```
 
-### **2.2. Seguretat i Control d'Accés**
+### **2.2. Seguretat i control d'accés**
 - Les vistes poden restringir l'accés a certes columnes d'una taula.
 - Exemple:
   ```sql
@@ -47,12 +47,12 @@ Aquesta vista permet accedir només a les columnes `id`, `nom` i `email` de la t
   ```
   Els usuaris amb accés a `vista_empleats` no podran veure els sous.
 
-### **2.3. Independència de Dades**
+### **2.3. Independència de dades**
 - Si es modifica l'estructura d'una taula, la vista pot seguir operant sense necessitat de modificar les consultes.
 
 ---
 
-## 3. Modificació d'una Vista
+## 3. Modificació d'una vista
 
 Per modificar una vista existent, fem servir `CREATE OR REPLACE VIEW`:
 
@@ -65,7 +65,7 @@ Aquesta ordre sobreescriu la vista `vista_clients` afegint la columna `telefon`.
 
 ---
 
-## 4. Eliminació d'una Vista
+## 4. Eliminació d'una vista
 
 Per eliminar una vista:
 
