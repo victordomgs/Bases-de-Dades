@@ -2,9 +2,7 @@
 
 **A partir del model relacional i del diagrama ER que trobareu a continuació, construeix les sentències CREATE TABLE necessàries per implantar la base de dades corresponent.**
 
----
-
-### Model relacional
+<ins>**Model relacional**</ins>
 
 **Llibres**(<ins>llibre_id</ins>, títol, any, autor_id)
   on *autor_id* referencia *Autors*.
@@ -17,7 +15,7 @@
   on *usuari_id* referencia *Usuaris*.
   on *llibre_id* referencia *Llibres*.
 
-### Diagrama E/R
+<ins>**Diagrama E/R**</ins>
 
   <div style="text-align: center;">
     <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/EER-bibliotecaINSSabadell.png" alt="EER-bibliotecaINSSabadell" width="655" height="auto"/>
