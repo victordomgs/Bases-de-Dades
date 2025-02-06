@@ -1,6 +1,6 @@
-# Creació d'Esquemes i Bases de Dades
+# Creació d'esquemes i bases de dades
 
-## 1. Creació d'una Base de Dades
+## 1. Creació d'una base de dades
 
 ### **1.1. Sintaxi bàsica**
 
@@ -10,7 +10,7 @@ Per crear una base de dades en SQL, s'utilitza la instrucció `CREATE DATABASE`:
 CREATE DATABASE nom_de_la_base_de_dades;
 ```
 
-### **1.2. Definició de Codificació i Col·lació**
+### **1.2. Definició de codificació i col·lació**
 
 En molts SGBD, podem definir la codificació de caràcters i la col·lació (ordre de classificació de text). Exemples:
 
@@ -35,7 +35,7 @@ Aquesta instrucció només crearà la base de dades si no existeix prèviament.
 
 ---
 
-## 2. Eliminació d'una Base de Dades
+## 2. Eliminació d'una base de dades
 
 ### **2.1. Sintaxi per eliminar una base de dades**
 
@@ -55,7 +55,7 @@ Aquest enfocament evita errors si la base de dades no existeix.
 
 ---
 
-## 3. Modificació d'una Base de Dades
+## 3. Modificació d'una base de dades
 
 ### **3.1. Modificar la col·lació o codificació**
 
@@ -67,7 +67,7 @@ Aquesta ordre canvia la codificació i col·lació de la base de dades, però no
 
 ---
 
-## 4. Llistat de Bases de Dades
+## 4. Llistat de bases de dades
 
 Per veure les bases de dades disponibles en un SGBD:
 
@@ -90,7 +90,7 @@ Exemple de sortida:
 
 ---
 
-## 5. Seleccionar una Base de Dades
+## 5. Seleccionar una base de dades
 
 Abans de treballar amb una base de dades, cal seleccionar-la:
 
@@ -102,7 +102,7 @@ Aquesta ordre estableix `exemple_db` com la base de dades activa per a les opera
 
 ---
 
-## 6. Exemple Complet
+## 6. Exemple complet
 
 ```sql
 -- Creació de la base de dades
