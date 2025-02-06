@@ -1,4 +1,4 @@
-# Creació de Taules
+# Creació de taules
 
 ## 1. Sintaxi bàsica
 
