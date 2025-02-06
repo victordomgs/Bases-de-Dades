@@ -208,8 +208,8 @@ ALTER TABLE clients MODIFY COLUMN id INT;
 - Repassar les relacions entre taules abans d'afegir o eliminar `FOREIGN KEY`.
 
 ### **3.4. Utilitzar noms clars per les restriccions**
-- Assignar noms a les restriccions per facilitar la seva gestió:
+- Assignar noms a les restriccions per facilitar la seva gestió, e lloc de confiar en noms automàtics generats pel SGBD:
   ```sql
   ALTER TABLE usuaris ADD CONSTRAINT un_email UNIQUE (email);
   ```
-  En lloc de confiar en noms automàtics generats pel SGBD.
+  
