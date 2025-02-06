@@ -6,4 +6,4 @@
 
 ### Model relacional
 
-**Llibres**(<ins>llibre_Id</ins>, títol, any, autor_id
+**Llibres**(<ins>llibre_id</ins>, títol, any, autor_id
