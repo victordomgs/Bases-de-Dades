@@ -65,7 +65,7 @@ Aquest disseny assegura que el `preu` sempre sigui positiu i estableix un valor 
 
 Les restriccions ajuden a garantir la integritat de les dades.
 
-| Constrenyiment | Descripció |
+| Restriccions | Descripció |
 |---------------|------------|
 | `PRIMARY KEY` | Identifica un registre únic en una taula |
 | `FOREIGN KEY` | Crea una relació entre dues taules |
