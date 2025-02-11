@@ -28,6 +28,6 @@
 <ins>**Diagrama E/R**</ins>
 
   <div style="text-align: center;">
-    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/EER-empresa.png" alt="EER-empresa" width="655" height="auto"/>
+    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/EER-empresa.png" alt="EER-empresa" width="982" height="auto"/>
   </div>
 
