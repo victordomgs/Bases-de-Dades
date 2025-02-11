@@ -19,7 +19,7 @@
 **Article**(<ins>id_article</ins>, id_fabrica, descripcio)<br>
   on *id_fabrica* referencia *Fabrica*
   
-**Detalls_comanda**(<ins>id_detalls_comanda</ins>, id_comanda, id_article, cantidad)<br>
+**Detalls_comanda**(<ins>id_detalls_comanda</ins>, id_comanda, id_article, quantitat)<br>
   on *id_comanda* referencia *Comanda*<br>
   on *id_article* referencia *Article*
 
