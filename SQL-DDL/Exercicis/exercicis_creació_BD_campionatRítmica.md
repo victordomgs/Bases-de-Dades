@@ -8,34 +8,34 @@
 **Persones**(<ins>numFitxa</ins>, nom, cognom1, cognom2)
 
 **Jutgesses**(<ins>numFitxa</ins>, adreça, internacional, DNI)
-  on *numFitxa* referencia *Persones*. 
+  on *numFitxa* referencia *Persones*.<br>
 
 **Idiomes**(<ins>codi</ins>, nom)
 
 **Idiomes_jutgesses**(<ins>numFitxa</ins>, <ins>codi_idioma</ins>)
-  on *numFitxa* referencia *Jutgesses*. 
+  on *numFitxa* referencia *Jutgesses*.<br> 
   on *numFitxa* referencia *Idiomes*. 
 
 **Entrenadors**(<ins>numFitxa</ins>, adreça, titulacio, DNI)
-  on *numFitxa* referencia *Persones*.
+  on *numFitxa* referencia *Persones*.<br>
 
 **Gimnastes**(<ins>numFitxa</ins>, dataNaixement, suplent, nomClub, numFitxa_Entrenador)
-  on *numFitxa* referencia *Persones*.
-  on *nomClub* referencia *Clubs*.
-  on *numFitxa_Entrenador* referencia *Entrenadors*.
+  on *numFitxa* referencia *Persones*.<br>
+  on *nomClub* referencia *Clubs*.<br>
+  on *numFitxa_Entrenador* referencia *Entrenadors*.<br>
 
 **Clubs**(<ins>nom</ins>, adreça, provincia, nomPresident)
   on *numFitxa* referencia *Gimnastes*.
 
 **Entrenador_Club**(<ins>numFitxa</ins>, <ins>nomClub</ins>, data_inici, data_fi)
-  on *numFitxa* referencia *Entrenadors*.
+  on *numFitxa* referencia *Entrenadors*.<br>
   on *nomClub* referencia *Clubs*.
 
 **Exercicis**(<ins>codi</ins>, nom)
 
 **ExercicisRealitzats**(<ins>exerciciRealitzatId</ins>, codi_exercici, numero_fitxaGimnasta, numero_fitxaJutgessa, qualificacio)
-  on *numero_fitxaGimnasta* referencia *Gimnastes*.
-  on *numero_fitxaJutgessa* referencia *Jutgesses*.
+  on *numero_fitxaGimnasta* referencia *Gimnastes*.<br>
+  on *numero_fitxaJutgessa* referencia *Jutgesses*.<br>
   on *codi_exercici* referencia *Exercicis*.
   
 
