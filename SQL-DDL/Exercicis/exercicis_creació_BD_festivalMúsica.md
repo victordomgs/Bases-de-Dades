@@ -31,7 +31,8 @@
     on *nom_grup1* referencia *Grups*.<br>
     on *nom_grup2* referencia *Grups*.
 
-<ins>**Diagrama E/R**</ins>
+---
+### Diagrama E/R
 
   <div style="text-align: center;">
     <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/EER-festivalM%C3%BAsica.png" alt="EER-festivalMúsica" width="885" height="auto"/>
