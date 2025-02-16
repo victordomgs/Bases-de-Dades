@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Utilitzant la base de dades sakila, realitzeu els següents exercicis sobre consultes:
+   Utilitzant la base de dades sakila, realitzeu els següents exercicis sobre modificació de bases de dades:
 ********************************************************************************/
 
 /*Afegeix una columna phone_number de tipus VARCHAR(15) a la taula customer per poder emmagatzemar el número de telèfon dels clients. Aquesta columna ha de permetre valors nuls.*/
