@@ -17,7 +17,7 @@
 
 <br>
 
-<ins>**Diagrama E/R**</ins>
+## Diagrama E/R
 
   <div style="text-align: center;">
     <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/EER-bibliotecaINSSabadell.png" alt="EER-bibliotecaINSSabadell" width="655" height="auto"/>
