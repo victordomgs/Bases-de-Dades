@@ -44,4 +44,4 @@
   </div>
 
 ---
-Exercici creat per Isabel De Andrés
+*Exercici creat per Isabel De Andrés*
