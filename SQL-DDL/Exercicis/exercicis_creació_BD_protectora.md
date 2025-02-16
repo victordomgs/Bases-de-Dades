@@ -1,6 +1,7 @@
 ## Protectora d'animals
 
 **Exercici creat per Joan Queralt: [enllaç](https://gitlab.com/joanq/DAM-M2-BasesDeDades/-/blob/master/UF2/2-DDL/activitats/creacio_taules.adoc?ref_type=heads)**
+
 <br>
 ---
 **A partir del model relacional i del diagrama ER que trobareu a continuació, construeix les sentències CREATE TABLE necessàries per implantar la base de dades corresponent.**
