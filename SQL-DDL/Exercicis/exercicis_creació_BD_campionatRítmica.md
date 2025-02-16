@@ -33,7 +33,7 @@
 
 **Exercicis**(<ins>codi</ins>, nom)
 
-**ExercicisRealitzats**(<ins>exercici_realitzatId</ins>, codi_exercici, numero_fitxaGimnasta, numero_fitxaJutgessa, qualificacio)
+**ExercicisRealitzats**(<ins>exerciciRealitzatId</ins>, codi_exercici, numero_fitxaGimnasta, numero_fitxaJutgessa, qualificacio)
   on *numero_fitxaGimnasta* referencia *Gimnastes*.
   on *numero_fitxaJutgessa* referencia *Jutgesses*.
   on *codi_exercici* referencia *Exercicis*.
