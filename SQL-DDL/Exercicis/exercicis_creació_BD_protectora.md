@@ -49,7 +49,9 @@
   on *TimePeriodId* referencia *TimePeriods*.  
   on *CollaboratorDNI* referencia *Collaborators*.
 
-<ins>**Diagrama E/R**</ins>
+<br>
+
+## Diagrama E/R
 
   <div style="text-align: center;">
     <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/ERR-protectora.png" alt="EER-protectora" width="885" height="auto"/>
