@@ -38,9 +38,9 @@
   on *numero_fitxaJutgessa* referencia *Jutgesses*.<br>
   on *codi_exercici* referencia *Exercicis*.
   
+<br>
 
-
-<ins>**Diagrama E/R**</ins>
+## Diagrama E/R
 
   <div style="text-align: center;">
     <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/EER-campionatR%C3%ADtmica.png" alt="EER-protectora" width="885" height="auto"/>
