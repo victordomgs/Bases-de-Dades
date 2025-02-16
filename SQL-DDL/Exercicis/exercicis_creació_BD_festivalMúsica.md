@@ -1,8 +1,5 @@
 ## Festival de Música
 
-**Exercici creat per Isabel De Andrés**
-<br>
----
 **A partir del model relacional i del diagrama ER que trobareu a continuació, construeix les sentències CREATE TABLE necessàries per implantar la base de dades corresponent.**
 
 **Recintes**(<ins>nom_recinte</ins>, aforament, m2escena, m2public, lavabosS/N, cobertS/N)
@@ -31,9 +28,12 @@
     on *nom_grup1* referencia *Grups*.<br>
     on *nom_grup2* referencia *Grups*.
 
-
+<br>
 ## Diagrama E/R
 
   <div style="text-align: center;">
     <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/EER-festivalM%C3%BAsica.png" alt="EER-festivalMúsica" width="885" height="auto"/>
   </div>
+
+---
+*Exercici creat per Isabel De Andrés*
