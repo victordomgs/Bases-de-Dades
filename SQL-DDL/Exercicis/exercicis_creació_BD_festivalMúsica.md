@@ -14,7 +14,7 @@
 
 **Webs**(<ins>nom_web</ins>, URL, NIF)
 
-**Persones**(<ins>usuari</ins>, password, <ins>DNI/passaport, mail, nom, cognom1, cognom2, adreça, ciutat, codipostal, telefon)
+**Persones**(<ins>usuari</ins>, password, DNI/passaport, mail, nom, cognom1, cognom2, adreça, ciutat, codipostal, telefon)
 
 **Actuacions**(<ins>nom_recinte</ins>, nom_grup, dataHora_actuacio, catxè)<br>
     on *nom_recinte* referencia *Recintes*.<br>
