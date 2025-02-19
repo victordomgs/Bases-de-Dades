@@ -1,7 +1,7 @@
 # Restriccions de Clau Forana
 
 ## Definició
-Una clau forana (foreign key) és un camp o conjunt de camps en una taula que estableix una relació amb la clau primària d'una altra taula. Serveix per garantir la integritat referencial entre les dades de dues taules.
+Una **clau forana (foreign key)** és un camp o conjunt de camps en una taula que estableix una relació amb la clau primària d'una altra taula. Serveix per garantir la integritat referencial entre les dades de dues taules.
 
 ## Objectiu
 Les claus foranes asseguren que els valors d'un camp (o camps) en una taula coincideixin amb els valors d'una clau primària en una altra taula. Això evita l'existència de registres "penjats" o referències a dades inexistents.
