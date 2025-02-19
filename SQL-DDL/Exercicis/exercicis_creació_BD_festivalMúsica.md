@@ -28,7 +28,6 @@
     on *nom_grup1* referencia *Grups*.<br>
     on *nom_grup2* referencia *Grups*.
 
-<br>
 ## Diagrama E/R
 
   <div style="text-align: center;">
