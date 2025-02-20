@@ -16,7 +16,7 @@
 
 **Persones**(<ins>usuari</ins>, password, DNI/passaport, mail, nom, cognom1, cognom2, adreça, ciutat, codipostal, telefon)
 
-**Actuacions**(<ins>nom_recinte</ins>, nom_grup, dataHora_actuacio, catxè)<br>
+**Actuacions**(<ins>nom_recinte</ins>, nom_grup, <ins>dataHora_actuacio</ins>, catxè)<br>
     on *nom_recinte* referencia *Recintes*.<br>
     on *nom_grup* referencia *Grups*.
     
