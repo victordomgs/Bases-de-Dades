@@ -37,5 +37,5 @@
 ## Diagrama E/R
 
   <div style="text-align: center;">
-    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/ERR-protectora.png" alt="EER-protectora" width="885" height="auto"/>
+    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/SQL-DDL/EER/EER-ONG.png" alt="EER-ONG" width="885" height="auto"/>
   </div>
