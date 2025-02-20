@@ -11,7 +11,7 @@
 
 **Idiomes_jutgesses**(<ins>numFitxa</ins>, <ins>codi_idioma</ins>)<br>
   on *numFitxa* referencia *Jutgesses*.<br> 
-  on *numFitxa* referencia *Idiomes*. 
+  on *codi_idioma* referencia *Idiomes*. 
 
 **Entrenadors**(<ins>numFitxa</ins>, adreça, titulacio, DNI)<br>
   on *numFitxa* referencia *Persones*.<br>
@@ -19,7 +19,8 @@
 **Gimnastes**(<ins>numFitxa</ins>, dataNaixement, suplent, nomClub, numFitxa_Entrenador)<br>
   on *numFitxa* referencia *Persones*.<br>
   on *nomClub* referencia *Clubs*.<br>
-  on *numFitxa_Entrenador* referencia *Entrenadors*.
+  on *numFitxa_Entrenador* referencia *Entrenadors*.<br>
+  on *suplent* referencia *Gimnastes*.
 
 **Clubs**(<ins>nom</ins>, adreça, provincia, nomPresident)<br>
   on *numFitxa* referencia *Gimnastes*.
