@@ -1,4 +1,4 @@
-# Creació d'esquemes i bases de dades
+# Creació de bases de dades
 
 ## 1. Creació d'una base de dades
 
