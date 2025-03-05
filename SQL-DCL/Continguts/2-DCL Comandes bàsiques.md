@@ -122,7 +122,3 @@ REVOKE SELECT, INSERT ON clients FROM empleat1;
 DROP USER empleat1;
 ```
 *Aquesta operació elimina els permisos de `empleat1` i després esborra l’usuari.*
-
----
-## Conclusió
-DCL en PostgreSQL permet una gestió eficient i segura dels privilegis dels usuaris i rols dins d'una base de dades. És fonamental utilitzar aquestes eines adequadament per mantenir un control d’accés segur i evitar problemes de seguretat.
