@@ -73,6 +73,13 @@ CREATE USER usuari1 WITH PASSWORD 'contrasenya_segura';
 ```
 *Això crea un usuari anomenat `usuari1` amb una contrasenya.*
 
+> [!IMPORTANT]  
+> Per defecte postgres té activada l'autenticació 'peer', per tant s'ha de modificar aquesta configuració.
+> Editem l'arxiu ```pg_hba.conf``` per canviar el mètode d'autenticació: ```sudo nano /etc/postgresql/14/main/pg_hba.conf```.
+> Busquem la següent línea: ```local   all   all   peer```.
+> I canviem per: ```local   all   all   md5```.
+
+
 ### 3.2. Crear un rol
 ```sql
 CREATE ROLE gestor;
