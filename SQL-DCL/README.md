@@ -1,8 +1,12 @@
 # Guia d'instal·lació de PostgreSQL a Ubuntu
 
 ## Què és PostgreSQL?
-PostgreSQL és un sistema de gestió de bases de dades relacional de codi obert i de conformitat amb l'estàndard SQL. Ofereix característiques avançades com transaccions ACID, suport per JSON i XML, extensions personalitzades i repliques.
+**PostgreSQL** és un sistema de gestió de bases de dades relacional de codi obert i de conformitat amb l'estàndard SQL. Ofereix característiques avançades com transaccions ACID, suport per JSON i XML, extensions personalitzades i repliques.
 
+  <div style="text-align: center;">
+    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/images/acid.png" alt="ACID" width="720" height="auto"/><p><em>Figura 1: ACID. Fuente: Gravitar.biz</em></p>
+  </div>
+  
 ## Instal·lació de PostgreSQL a Ubuntu
 
 ### 1. Actualitzar els paquets del sistema
