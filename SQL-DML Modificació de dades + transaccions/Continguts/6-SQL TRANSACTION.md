@@ -11,6 +11,9 @@ Les transaccions segueixen les propietats **ACID**:
 3. **Aïllament**: Les operacions de diferents transaccions no interfereixen entre elles.
 4. **Durabilitat**: Els canvis realitzats per una transacció confirmada es conserven fins i tot en cas de fallades del sistema.
 
+  <div style="text-align: center;">
+    <img src="https://github.com/victordomgs/Bases-de-Dades/blob/main/images/acid.png" alt="ACID" width="480" height="auto"/><p><em>Figura 1: ACID. Fuente: Gravitar.biz</em></p>
+  </div>
 ---
 
 ## Inici i finalització de transaccions
