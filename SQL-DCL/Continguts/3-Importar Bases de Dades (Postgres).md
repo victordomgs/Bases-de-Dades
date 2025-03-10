@@ -1,6 +1,6 @@
 # Com importar una base de dades a PostgreSQL 
 
-## 1. Importar un fitxer `.sql`
+## Importar un fitxer `.sql`
 Si tens un fitxer SQL amb les instruccions per crear i omplir la base de dades, utilitza la següent comanda:
 
 ### **Sintaxi:**
