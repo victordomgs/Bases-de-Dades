@@ -78,17 +78,9 @@ ALTER ROLE nom_rol NOINHERIT;
 Per cada usuari s'han d'assignar els rols corresponents i els permisos per connectar-se.
 
 ```sql
-CREATE USER maria WITH PASSWORD 'maria' LOGIN;
-GRANT Manager, AirTrafficControl TO maria;
-
-CREATE USER pere WITH PASSWORD 'pere' LOGIN INHERIT;
-GRANT GroundControl, TicketSeller TO pere;
-
-CREATE USER pau WITH PASSWORD 'pau' LOGIN INHERIT;
-GRANT AirTrafficControl TO pau;
-
-CREATE USER anna WITH PASSWORD 'anna' LOGIN;
-GRANT GroundControl, Manager TO anna;
+CREATE USER nom_user WITH PASSWORD 'password' LOGIN;
+GRANT nom_rol TO nom_user;
+ALTER ROLE nom_user NOINHERIT; //En cas que fos necessari.
 ```
 
 ## 5. Creació de taules i permisos necessaris
