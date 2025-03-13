@@ -87,44 +87,11 @@ ALTER ROLE nom_user NOINHERIT; --En cas que fos necessari.
 
 Quan es creen taules, cal tenir en compte els permisos de referència per les claus foranes.
 
-Per exemple, per permetre que `FlightSchedules` referenciï `Airports`:
-```sql
-GRANT REFERENCES ON TABLE flights.Airports TO maria;
-```
+A l'activitat `act01_airport.md`:
 
 Per permetre a `Reservations` referenciar `FlightSchedules`:
 ```sql
 GRANT REFERENCES ON TABLE flights.FlightSchedules TO pere;
-```
-
-## 6. Creació de vistes
-
-Les vistes permeten mostrar informació de forma compacta.
-
-### 6.1. Creació de `ReservationsInfo`
-Aquesta vista mostrarà informació sobre les reserves, el nombre de passatgers i els detalls del vol:
-```sql
-CREATE VIEW passengers.ReservationsInfo AS
-SELECT r.Code, COUNT(pr.PassengerId) AS NumPassengers, fs.Date, fs.FlightCode,
-       a1.City AS Origin, a2.City AS Destination,
-       fs.DepartureTime, fs.ArrivalTime
-FROM passengers.Reservations r
-JOIN passengers.PassengerReservations pr ON r.Id = pr.ReservationId
-JOIN flights.FlightSchedules fs ON r.FlightScheduleId = fs.Id
-JOIN flights.Airports a1 ON fs.Origin = a1.Id
-JOIN flights.Airports a2 ON fs.Destination = a2.Id
-GROUP BY r.Code, fs.Date, fs.FlightCode, a1.City, a2.City, fs.DepartureTime, fs.ArrivalTime;
-```
-
-### 6.2. Creació de `AircraftsView`
-Aquesta vista mostrarà informació sobre els avions i els seus fabricants:
-```sql
-CREATE VIEW aircrafts.AircraftsView AS
-SELECT ac.Id, ac.Name, am.Name AS Model, mf.Name AS Manufacturer, al.Name AS Airline
-FROM aircrafts.Aircrafts ac
-JOIN aircrafts.AircraftModels am ON ac.ModelId = am.Id
-JOIN aircrafts.Manufacturers mf ON am.ManufacturerId = mf.Id
-JOIN aircrafts.Airlines al ON ac.AirlineId = al.Id;
 ```
 
 ## 7. Verificació de permisos
@@ -133,6 +100,3 @@ Per verificar els privilegis assignats:
 ```sql
 SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_name = 'Airports';
 ```
-
-Aquesta guia cobreix els conceptes teòrics necessaris per completar l'activitat airport amb una correcta gestió d'usuaris, rols, esquemes, permisos, taules i vistes en PostgreSQL.
-
