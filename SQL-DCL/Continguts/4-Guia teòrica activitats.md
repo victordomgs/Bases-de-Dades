@@ -80,7 +80,7 @@ Per cada usuari s'han d'assignar els rols corresponents i els permisos per conne
 ```sql
 CREATE USER nom_user WITH PASSWORD 'password' LOGIN;
 GRANT nom_rol TO nom_user;
-ALTER ROLE nom_user NOINHERIT; //En cas que fos necessari.
+ALTER ROLE nom_user NOINHERIT; --En cas que fos necessari.
 ```
 
 ## 5. Creació de taules i permisos necessaris
