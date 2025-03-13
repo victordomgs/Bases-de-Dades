@@ -113,7 +113,7 @@
 
 **Table 7.** `FlightSchedules`
 
-8. Utilitza l'usuari `pere` per a crear les taules de l'esquema `passengers``. Quins permisos li hem d'atorgar a aquest usuari, com a mínim, per a poder-ho fer?
+8. Utilitza l'usuari `pere` per a crear les taules de l'esquema `passengers`. Quins permisos li hem d'atorgar a aquest usuari, com a mínim, per a poder-ho fer?
 
 | Columna         | Tipus          | Especial       |
 |---------------|--------------|---------------|
