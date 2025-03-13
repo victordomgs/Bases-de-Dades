@@ -37,7 +37,7 @@
 | `Country`    | `varchar(40)` |               |
 | `OtherDetails` | `text`      |               |
 
-**Table 1.** `Airlines
+**Table 1.** `Airlines`
 
 | Columna       | Tipus         | Especial       |
 |--------------|--------------|---------------|
@@ -58,7 +58,7 @@
 | `Weight`        | `int`         |                                   |
 | `OtherDetails`  | `text`        |                                   |
 
-**Table 3.** `AircraftModels
+**Table 3.** `AircraftModels`
 
 | Columna          | Tipus         | Especial                           |
 |-----------------|--------------|-----------------------------------|
@@ -127,7 +127,7 @@
 | `PhoneNumber` | `varchar(15)` |               |
 | `OtherDetails` | `text`       |               |
 
-**Table 8.** `Passengers
+**Table 8.** `Passengers`
 
 | Columna            | Tipus         | Especial                              |
 |------------------|--------------|--------------------------------------|
