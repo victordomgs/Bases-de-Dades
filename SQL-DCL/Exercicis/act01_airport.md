@@ -1,6 +1,6 @@
 ## Activitat airport
 
-**Activitat extreta dels materials del professor (Joan Queralt)[https://gitlab.com/joanq/DAM-M2-BasesDeDades/-/blob/master/UF3/1-usuaris/activitat_usuaris.adoc?ref_type=heads].
+**Activitat extreta dels materials del professor [Joan Queralt](https://gitlab.com/joanq/DAM-M2-BasesDeDades/-/blob/master/UF3/1-usuaris/activitat_usuaris.adoc?ref_type=heads).
 
 1. Utilitza l'usuari `postgres` per a crear una nova base de dades anomenada `airport`.
 2. Crear l'usuari `airadmin`, que podrà crear altres usuaris. Fes que sigui el propietari de `airports`. Assigna `llamps_i_trons` com a contrasenya d'aquest usuari.
