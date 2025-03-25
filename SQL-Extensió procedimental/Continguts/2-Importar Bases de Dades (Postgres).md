@@ -2,6 +2,7 @@
 
 > [!IMPORTANT]  
 > Necessitem executar les comandes desde l'usuari de sistema `postgres`. Recorda la comanda: `sudo -i -u postgres`.
+> 
 > L'usuari postgres no té permisos per accedir als directoris del sistema. Per tant, necessitarem moure el `.sql` descarregat a la carpeta `tmp`. Per fer-ho, utilitzem la següent comanda: `sudo mv -i...`.
 
 ## Importar un fitxer `.sql`
