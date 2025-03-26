@@ -113,8 +113,8 @@ SELECT * FROM get_empleat('14');
 Com a resultat obtenim: 
 
 ```
-   dni     |  name  | salary | age
------------+--------+--------+-----
-44444444A  | Maria  |   1500 |  25
+   id     |  nom  | sou 
+----------+------ +--------
+   14     | Maria | 1500 
 (1 row)
 ```
