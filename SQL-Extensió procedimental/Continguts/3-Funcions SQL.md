@@ -4,9 +4,11 @@ PostgreSQL accepta la creació de **funcions** en diferents llenguatges de progr
 
 Aquestes funcions estan formades per un conjunt d'instruccions en llenguatge SQL i retornen el resultat de l'última sentència executada. 
 
+<br>
+
 ## Sintaxi bàsica
 
-Anem a comentar el següent exemple: 
+Per entendre la sintaxi bàsica, anem a comentar el següent exemple: 
 
 ```sql
 CREATE FUNCTION helloworld() RETURNS TEXT AS $$
@@ -30,6 +32,8 @@ CREATE FUNCTION avgpopulation() RETURNS INTEGER AS $$
 $$ LANGUAGE SQL;
 ```
 
+<br>
+
 ## Paràmetres
 
 Els **paràmetres** són valors que passes a una funció quan la crides. Serveixen per fer que la funció sigui reutilitzable amb diferents valors. 
@@ -50,6 +54,8 @@ $$ LANGUAGE SQL;
 > SELECT doble(4);
 > ```
 
+<br>
+
 ## Crida de funcions
 
 Podem cridar les nostres funcions utilitzant un `SELECT` i indicant el nom de la funció. 
@@ -63,6 +69,8 @@ SELECT avgpopulation();
 SELECT doble(13);
 ```
 
+<br>
+
 ## Esborrat de funcions
 
 Per esborrar una funció utilitzarem `DROP FUNCTION`:
@@ -72,6 +80,8 @@ DROP FUNCTION helloworld();
 DROP FUNCTION avgpopulation();
 DROP FUNCTION doble(integer);
 ```
+
+<br>
 
 ## Sobreescriptura
 
@@ -97,6 +107,8 @@ $$ LANGUAGE SQL;
 
 Cada cop que cridem la funció `saluda` s'executarà una funció o una altre depenent de si li passem un paràmetre o no. 
 
+<br>
+
 ## Triar un valor de retorn
 
 En algunes ocasions, utilitzem sentències SQL que **no retornen cap valor** directament, com `INSERT`, `UPDATE` o `DELETE`.
@@ -115,6 +127,8 @@ CREATE FUNCTION incrementa_poblacio(pais TEXT, increment INTEGER) RETURNS INTEGE
   RETURNING population;
 $$ LANGUAGE SQL;
 ```
+
+<br>
 
 ## Crear un operador personalitzat
 
@@ -148,6 +162,8 @@ CREATE OPERATOR ## (
 > ```sql
 > DROP OPERATOR ##(text, text);
 > ```
+
+<br>
 
 ## Crear una funció d'agregació personalitzada
 
