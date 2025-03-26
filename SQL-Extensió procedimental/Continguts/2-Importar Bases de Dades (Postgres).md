@@ -19,4 +19,4 @@ psql -U <usuari> -d <nom_base_de_dades> -f </tmp/fitxer.sql>
 ```sh
 psql -U postgres -d world -f /tmp/world.sql
 ```
-*Això executarà el contingut del fitxer `backup.sql` dins la base de dades `empresa`.*
+*Això executarà el contingut del fitxer `world.sql` dins la base de dades `world`.*
