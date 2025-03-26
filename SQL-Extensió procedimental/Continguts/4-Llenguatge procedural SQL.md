@@ -3,9 +3,7 @@
 PL/pgSQL (on "PL" significa Procedural Language) és un **llenguatge de programació procedimental** que s’integra perfectament amb SQL. Permet combinar instruccions SQL amb estructures pròpies d’un llenguatge de programació, com ara bucles, condicions i declaració de variables.
 
 Aquest llenguatge complementa SQL aportant funcionalitats que són necessàries per a implementar processos més complexos, com ara la lògica de control de flux o la gestió d’estats mitjançant variables.
-
 <br>
-
 ## Sintaxi bàsica
 
 **PL/pgSQL** ja està activat per defecte a totes les bases de dades PostgreSQL modernes. Per tant, no és necessari instal·lar cap paquet.
