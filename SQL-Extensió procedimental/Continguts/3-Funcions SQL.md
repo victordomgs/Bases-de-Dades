@@ -108,12 +108,83 @@ Aquesta clàusula és especialment útil quan volem saber quin valor ha resultat
 Suposem que volem incrementar la població (`population`) d’un país en un determinat valor, i retornar el nou valor de població:
 
 ```sql
-CREATE FUNCTION incrementa_poblacio(pais TEXT, increment INTEGER)
-RETURNS INTEGER
-AS $$
+CREATE FUNCTION incrementa_poblacio(pais TEXT, increment INTEGER) RETURNS INTEGER AS $$
   UPDATE country
   SET population = population + increment
   WHERE name = pais 
   RETURNING population;
 $$ LANGUAGE SQL;
-``
+```
+
+## Crear un operador personalitzat
+
+En PostgreSQL, podem crear **operadors nous** que ens permeten fer operacions personalitzades entre tipus de dades, de la mateixa manera que fem servir els operadors tradicionals com `+`, `-`, `=`, etc.
+
+Per fer-ho, necessitem **dues coses**:
+
+1. **Una funció** que defineixi el comportament de l’operador.
+2. **L’operador** en si, que farà servir aquesta funció.
+
+Suposem que volem definir un operador `##` que concateni dos textos amb un espai. Primer hem de crear una funció que rebi dos noms de poblacions (valors `TEXT`) i les uneixi:
+
+```sql
+CREATE FUNCTION concat_amb_espai(t1 TEXT, t2 TEXT) RETURNS TEXT AS $$
+  SELECT CONCAT(t1, ' ', t2);
+$$ LANGUAGE SQL;
+```
+
+Ara creem un operador personalitzat que utilitzi aquesta funció:
+
+```sql
+CREATE OPERATOR ## (
+  LEFTARG = TEXT,
+  RIGHTARG = TEXT,
+  PROCEDURE = concat_amb_espai
+);
+```
+
+> [!IMPORTANT]
+> Si volem eliminar una funció que hem utilitzat per crear un operador, necessitarem primer eleminar els objectes que depenen d'aquesta. Per eliminar un operador, s'ha d'especificar els arguments d'esquerra i dreta:
+> ```sql
+> DROP OPERATOR ##(text, text);
+> ```
+
+## Crear una funció d'agregació personalitzada
+
+PostgreSQL permet crear **funcions d’agregació personalitzades**, és a dir, funcions que processen múltiples files i retornen un **valor agregat**, com fan les funcions estàndard `SUM`, `AVG`, `MIN`, etc.
+
+Aquesta funcionalitat és molt útil quan volem definir el nostre propi criteri d’agregació.
+
+Per crear una agregació, necessitem:
+
+1. **Una funció de transició**: que s’aplica fila a fila i acumula el resultat.
+2. **Una definició de l’agregació** (`CREATE AGGREGATE`) que les uneix.
+
+Volem crear una agregació que uneixi textos separats per comes, semblant a `string_agg`, però feta per nosaltres.
+
+Imaginem que volem unir tots els països que formen part d'un continent en una llista separada per comes. 
+
+1. Primer hem de definir la **funció de transició**:
+
+```sql
+CREATE FUNCTION list_country(element TEXT, country TEXT) RETURNS TEXT AS $$
+  SELECT CASE WHEN element IS NULL THEN country
+    ELSE CONCAT(element, ', ', country)
+    END;
+$$ LANGUAGE SQL;
+```
+
+2. Definim la **funció agregada**:
+
+```sql
+CREATE AGGREGATE agrupa_country(TEXT) (
+  SFUNC = list_country,
+  STYPE = TEXT
+);
+```
+
+Podriem utilitzar aquesta funció per veure tots els països que hi ha a Europa: 
+
+```sql
+SELECT agrupa_country(name) FROM country WHERE continent = 'Europe';
+```
