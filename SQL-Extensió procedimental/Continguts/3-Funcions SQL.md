@@ -34,7 +34,7 @@ $$ LANGUAGE SQL;
 
 <br>
 
-## Paràmetres
+## Paràmetres d'entrada
 
 Els **paràmetres** són valors que passes a una funció quan la crides. Serveixen per fer que la funció sigui reutilitzable amb diferents valors. 
 
