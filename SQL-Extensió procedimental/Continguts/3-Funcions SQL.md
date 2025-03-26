@@ -85,18 +85,14 @@ Exemple: Sobreescriptura d'una funció `saluda`
 
 ```sql
 -- Funció que rep un text (nom) i retorna un missatge personalitzat
-CREATE OR REPLACE FUNCTION saluda(nom TEXT) RETURNS TEXT AS $$
-BEGIN
-  RETURN 'Hola, ' || nom || '!';
-END;
-$$ LANGUAGE plpgsql;
+CREATE FUNCTION saluda(nom TEXT) RETURNS TEXT AS $$
+  SELECT CONCAT('Hola, ', nom, '!');
+$$ LANGUAGE SQL;
 
 -- Funció amb el mateix nom però sense paràmetres
-CREATE OR REPLACE FUNCTION saluda() RETURNS TEXT AS $$
-BEGIN
-  RETURN 'Hola, món!';
-END;
-$$ LANGUAGE plpgsql;
+CREATE FUNCTION saluda() RETURNS TEXT AS $$
+  SELECT 'Hola món!';
+$$ LANGUAGE SQL;
 ```
 
 Cada cop que cridem la funció `saluda` s'executarà una funció o una altre depenent de si li passem un paràmetre o no. 
