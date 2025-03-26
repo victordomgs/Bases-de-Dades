@@ -10,7 +10,7 @@ Anem a comentar el següent exemple:
 
 ```sql
 CREATE FUNCTION helloworld() RETURNS TEXT AS $$
-  SELECT ("Hello World!");
+  SELECT ('Hello World!');
 $$ LANGUAGE SQL;
 ```
 
