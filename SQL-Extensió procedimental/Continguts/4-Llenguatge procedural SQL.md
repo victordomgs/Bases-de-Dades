@@ -4,7 +4,6 @@ PL/pgSQL (on "PL" significa Procedural Language) és un **llenguatge de programa
 
 Aquest llenguatge complementa SQL aportant funcionalitats que són necessàries per a implementar processos més complexos, com ara la lògica de control de flux o la gestió d’estats mitjançant variables.
 
-<br>
 
 ## Sintaxi bàsica
 
