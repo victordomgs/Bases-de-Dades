@@ -46,7 +46,7 @@ $$ LANGUAGE plpgsql;
 
 <br>
 
-## Paràmetres
+## Paràmetres d'entrada
 
 Les funcions en PL/pgSQL poden rebre **paràmetres d'entrada**, que permeten passar valors a la funció quan es crida.
 
@@ -124,5 +124,43 @@ Com a resultat obtenim:
    id  |  nom  |  sou 
 -------+-------+-------
    14  | Maria |  1500 
+(1 row)
+```
+
+<br>
+
+## Paràmetres de sortida
+
+Els **paràmetres de sortida** (`OUT`) permeten retornar diversos valors des d’una funció de manera clara i estructurada, sense necessitat d’utilitzar tipus compostos ni retornar `RECORD`.
+
+Són molt útils quan volem retornar **múltiples resultats separats** (com valors calculats) en una sola crida.
+
+```sql
+CREATE FUNCTION calc_rect(base numeric, height numeric, 
+                          OUT area numeric, OUT perimeter numeric)
+AS $$
+BEGIN
+  SELECT base * height, 2 * (base + height) INTO area, perimeter;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+| Element                                 | Descripció                                                             |
+|-----------------------------------------|-------------------------------------------------------------------------|
+| `OUT area numeric`, `OUT perimeter numeric` | Paràmetres de sortida: es poden omplir dins el cos de la funció.       |
+| `SELECT ... INTO area, perimeter`       | Assigna valors a les variables de sortida.                              |
+
+Podem cridar a la funció: 
+
+```sql
+SELECT * FROM calc_rect(2, 4);
+```
+
+Com a resultat obtenim: 
+
+```
+   area  |  perimeter  
+---------+------------
+    8    |     12
 (1 row)
 ```
