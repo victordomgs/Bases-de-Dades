@@ -81,7 +81,7 @@ PostgreSQL admet la **sobreescriptura de funcions** (function overloading). Aix�
 
 Gràcies a aquesta característica, PostgreSQL pot distingir quina versió de la funció ha de cridar segons els paràmetres que li passem.
 
-Exemple: Sobreescriptura d'una funció `saluda`
+Exemple: Sobreescriptura d'una funció `saluda`:
 
 ```sql
 -- Funció que rep un text (nom) i retorna un missatge personalitzat
@@ -96,3 +96,24 @@ $$ LANGUAGE SQL;
 ```
 
 Cada cop que cridem la funció `saluda` s'executarà una funció o una altre depenent de si li passem un paràmetre o no. 
+
+## Triar un valor de retorn
+
+En algunes ocasions, utilitzem sentències SQL que **no retornen cap valor** directament, com `INSERT`, `UPDATE` o `DELETE`.
+
+En aquests casos, podem fer ús de la clàusula `RETURNING` per **indicar quin valor volem obtenir com a resultat de l’operació** i, per tant, com a **valor de retorn** de la nostra funció.
+
+Aquesta clàusula és especialment útil quan volem saber quin valor ha resultat després de modificar una fila.
+
+Suposem que volem incrementar la població (`population`) d’un país en un determinat valor, i retornar el nou valor de població:
+
+```sql
+CREATE FUNCTION incrementa_poblacio(pais TEXT, increment INTEGER)
+RETURNS INTEGER
+AS $$
+  UPDATE country
+  SET population = population + increment
+  WHERE name = pais 
+  RETURNING population;
+$$ LANGUAGE SQL;
+``
