@@ -121,8 +121,8 @@ SELECT * FROM get_empleat('14');
 Com a resultat obtenim: 
 
 ```
-   id     |  nom  | sou 
-----------+------ +--------
-   14     | Maria | 1500 
+   id  |  nom  |  sou 
+-------+-------+-------
+   14  | Maria |  1500 
 (1 row)
 ```
