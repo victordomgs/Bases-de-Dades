@@ -72,3 +72,31 @@ DROP FUNCTION helloworld();
 DROP FUNCTION avgpopulation();
 DROP FUNCTION doble(integer);
 ```
+
+## Sobreescriptura
+
+En ocasions, podem necessitar definir funcions que realitzin tasques similars però treballin amb **tipus de dades diferents** o **quantitats diferents de paràmetres**.
+
+PostgreSQL admet la **sobreescriptura de funcions** (function overloading). Això vol dir que podem crear diverses funcions amb **el mateix nom**, sempre que **el nombre o el tipus d’arguments sigui diferent**.
+
+Gràcies a aquesta característica, PostgreSQL pot distingir quina versió de la funció ha de cridar segons els paràmetres que li passem.
+
+Exemple: Sobreescriptura d'una funció `saluda`
+
+```sql
+-- Funció que rep un text (nom) i retorna un missatge personalitzat
+CREATE OR REPLACE FUNCTION saluda(nom TEXT) RETURNS TEXT AS $$
+BEGIN
+  RETURN 'Hola, ' || nom || '!';
+END;
+$$ LANGUAGE plpgsql;
+
+-- Funció amb el mateix nom però sense paràmetres
+CREATE OR REPLACE FUNCTION saluda() RETURNS TEXT AS $$
+BEGIN
+  RETURN 'Hola, món!';
+END;
+$$ LANGUAGE plpgsql;
+```
+
+Cada cop que cridem la funció `saluda` s'executarà una funció o una altre depenent de si li passem un paràmetre o no. 
