@@ -136,9 +136,7 @@ Els **paràmetres de sortida** (`OUT`) permeten retornar diversos valors des d�
 Són molt útils quan volem retornar **múltiples resultats separats** (com valors calculats) en una sola crida.
 
 ```sql
-CREATE FUNCTION calc_rect(base numeric, height numeric, 
-                          OUT area numeric, OUT perimeter numeric)
-AS $$
+CREATE FUNCTION calc_rect(base numeric, height numeric, OUT area numeric, OUT perimeter numeric) AS $$
 BEGIN
   SELECT base * height, 2 * (base + height) INTO area, perimeter;
 END;
