@@ -3,7 +3,9 @@
 PL/pgSQL (on "PL" significa Procedural Language) és un **llenguatge de programació procedimental** que s’integra perfectament amb SQL. Permet combinar instruccions SQL amb estructures pròpies d’un llenguatge de programació, com ara bucles, condicions i declaració de variables.
 
 Aquest llenguatge complementa SQL aportant funcionalitats que són necessàries per a implementar processos més complexos, com ara la lògica de control de flux o la gestió d’estats mitjançant variables.
+
 <br>
+
 ## Sintaxi bàsica
 
 **PL/pgSQL** ja està activat per defecte a totes les bases de dades PostgreSQL modernes. Per tant, no és necessari instal·lar cap paquet.
@@ -42,6 +44,8 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
+<br>
+
 ## Paràmetres
 
 Les funcions en PL/pgSQL poden rebre **paràmetres d'entrada**, que permeten passar valors a la funció quan es crida.
@@ -55,6 +59,8 @@ $$ LANGUAGE plpgsql;
 ```
 
 En aquest cas, la funció `saluda` rep un paràmetre anomenat `nom` de tipus `text` i retorna una salutació personalitzada.
+
+<br>
 
 ## Ús de `RETURNING` dins funcions PL/pgSQL
 
@@ -85,6 +91,8 @@ $$ LANGUAGE plpgsql;
 | `UPDATE ... RETURNING sou`| Actualitza el sou i retorna el valor actualitzat de la columna `sou`.      |
 | `INTO sou_final`          | Assigna el valor retornat per `RETURNING` a la variable `sou_final`.       |
 | `RETURN sou_final`        | Retorna el resultat final com a resposta de la funció.                     |
+
+<br>
 
 ## ÚS de `SELECT ... INTO` 
 
