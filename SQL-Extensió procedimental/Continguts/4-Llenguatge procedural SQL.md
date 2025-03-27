@@ -228,6 +228,8 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
+### `CASE`
+
 La sentència `CASE` permet comparar múltiples valors d'una variable o expressió de manera més ordenada quan hi ha molts casos.
 
 Podem fer el mateix exemple que hem vist amb `IF` utilitzant `CASE`:
