@@ -167,3 +167,85 @@ Com a resultat obtenim:
 
 ## Tractament d'excepcions
 
+El **tractament d’excepcions** consisteix en capturar i gestionar els **errors que poden ocórrer** durant l’execució d’un bloc de codi SQL dins una funció o procediment. Això permet **evitar que el programa falli completament** i oferir una resposta controlada davant d’una situació inesperada, com per exemple: valors inexistents, divisions per zero, duplicats, errors de tipus, etc.
+
+En PL/pgSQL (PostgreSQL), això es fa amb la clàusula `EXCEPTION`.
+
+Imaginem que tenim la següent funció que retorna informació d'una ciutat pel seu `ID`. Si el `ID` no existeix, captura l'error i retorna un missatge controlat. 
+
+```sql
+CREATE FUNCTION info_ciutat(city_id integer) RETURNS TEXT AS $$
+DECLARE
+  resultat TEXT;
+  nom_ciutat TEXT;
+BEGIN
+  SELECT name INTO nom_ciutat
+  FROM city
+  WHERE id = city_id;
+
+  resultat := 'La ciutat és: ' || nom_ciutat;
+  RETURN resultat;
+
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    RETURN 'No s’ha trobat cap ciutat amb aquest ID.';
+  WHEN TOO_MANY_ROWS THEN
+    RETURN 'Retorna més d’una línea.';
+END;
+$$ LANGUAGE plpgsql;
+```
+
+> [!WARNING]  
+> En PostgreSQL, la captura de `NO_DATA_FOUND` com a tal no està disponible com a excepció directa com en Oracle, però es pot simular o capturar amb condicions addicionals. Aquest exemple és conceptual i pot requerir millores segons el comportament exacte desitjat.
+
+## Condicionals
+
+Hi ha dos tipus de condicionals en PL/pgSQL: la sentència `IF` i la sentència `CASE`, de la qual hi ha diverses variants.
+
+### `IF` / `ELSIF` / `ELSE`
+
+S'utilitza per a executar blocs de codi segons si una condició és certa.
+
+Volem fer una funció que digui si una ciutat té una població gran o petita. Suposem que considerem que més de 500.000 habitants és "gran":
+
+```sql
+CREATE FUNCTION classificacio_ciutat(city_id integer) RETURNS TEXT AS $$
+DECLARE
+  poblacio integer;
+BEGIN
+  SELECT population INTO poblacio
+  FROM city
+  WHERE id = city_id;
+
+  IF poblacio > 500000 THEN
+    RETURN 'Ciutat gran';
+  ELSIF poblacio > 100000 THEN
+    RETURN 'Ciutat mitjana';
+  ELSE
+    RETURN 'Ciutat petita';
+  END IF;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+La sentència `CASE` permet comparar múltiples valors d'una variable o expressió de manera més ordenada quan hi ha molts casos.
+
+Podem fer el mateix exemple que hem vist amb `IF` utilitzant `CASE`:
+
+```sql
+CREATE FUNCTION classificacio_ciutat_case(city_id integer) RETURNS TEXT AS $$
+DECLARE
+  poblacio integer;
+BEGIN
+  SELECT population INTO poblacio
+  FROM city
+  WHERE id = city_id;
+
+  RETURN CASE
+    WHEN poblacio > 500000 THEN 'Ciutat gran'
+    WHEN poblacio > 100000 THEN 'Ciutat mitjana'
+    ELSE 'Ciutat petita'
+  END;
+END;
+$$ LANGUAGE plpgsql;
+```
