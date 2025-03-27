@@ -270,7 +270,6 @@ Aquesta funció **no retorna re**s, només mostra les 5 primeres ciutats (per `i
 
 Pot donar error si algun `id` entre 1 i 5 no existeix (encara que a `world.city` habitualment sí que existeixen).
 
-
 ```sql
 CREATE FUNCTION mostra_cinc_ciutats() RETURNS VOID AS $$
 DECLARE
@@ -344,4 +343,68 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 - Finalitza el bucle `WHILE` i el bloc principal `BEGIN ... END`.
+- S’indica que el llenguatge utilitzat és **PL/pgSQL**, propi de PostgreSQL.
+
+### `FOR`
+
+Aquesta sentència es molt útil per fer-la iterar **sobre un rang de valors** o sobre un conjunt de files d'una consulta. 
+
+Imaginem que volem mostrar el conjunt de les ciutats espanyoles que apareixen a la base de dades:
+
+```sql
+CREATE FUNCTION mostra_ciutats() RETURNS VOID AS $$
+DECLARE
+  registre RECORD;
+BEGIN
+  FOR registre IN SELECT id, name FROM city WHERE countrycode = 'ESP' LOOP
+    RAISE NOTICE 'ID: %, Nom: %', registre.id, registre.name;
+  END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+Anem a veure el codi pas per pas: 
+
+```sql
+CREATE FUNCTION mostra_ciutats_espanoles() RETURNS VOID AS $$
+```
+- Declara la creació d’una **funció anomenada** `mostra_ciutats_espanoles`.
+- Aquesta funció **no retorna cap valor**, per això s’indica `RETURNS VOID`.
+- El codi de la funció comença amb `$$`.
+
+```sql
+DECLARE
+  registre RECORD;
+```
+- S’inicia la secció de **declaració de variables locals**.
+- Es declara una variable `registre` de tipus `RECORD`, que pot **emmagatzemar una fila sencera** (amb múltiples columnes) del resultat d’una consulta.
+- En aquest cas, cada fila contindrà un `id` i un `name` de la taula `city`.
+
+```sql
+BEGIN
+  FOR registre IN SELECT id, name FROM city WHERE countrycode = 'ESP' LOOP
+```
+- Inici del cos principal de la funció.
+- Comença un **bucle** `FOR` que **itera sobre totes les ciutats de la taula** `city` on el `countrycode` **és 'ESP'** (Espanya).
+- Cada fila que retorna aquesta consulta és assignada a la variable `registre`, que conté els camps `id` i `name`.
+
+```sql
+    RAISE NOTICE 'ID: %, Nom: %', registre.id, registre.name;
+```
+- Aquesta línia **imprimeix per pantalla (o al log de PostgreSQL)** el valor dels camps de la fila actual:
+`registre.id`: identificador de la ciutat.
+`registre.name`: nom de la ciutat.
+
+Per exemple: 
+```yaml
+BEGIN
+  FOR registre IN SELECT id, name FROM city WHERE countrycode = 'ESP' LOOP
+```
+
+```sql
+  END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+```
+- Finalitza el bucle `FOR` i el bloc principal `BEGIN ... END`.
 - S’indica que el llenguatge utilitzat és **PL/pgSQL**, propi de PostgreSQL.
