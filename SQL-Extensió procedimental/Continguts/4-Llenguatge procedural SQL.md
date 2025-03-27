@@ -69,28 +69,28 @@ Quan fem operacions `INSERT`, `UPDATE` o `DELETE`, podem utilitzar la clàusula 
 Suposem que tenim una taula `empleats(id, nom, sou)` i volem fer una funció que actualitzi el sou d’un empleat i ens retorni el nou sou.
 
 ```sql
-CREATE FUNCTION actualitza_sou(emp_id integer, nou_sou numeric) RETURNS numeric AS $$
+CREATE FUNCTION actualitza_poblacio(city_id integer, nova_poblacio integer) RETURNS integer AS $$
 DECLARE
-  sou_final numeric;
+  poblacio_final integer;
 BEGIN
-  UPDATE empleats
-  SET sou = nou_sou
-  WHERE id = emp_id
-  RETURNING sou INTO sou_final;
+  UPDATE city
+  SET population = nova_poblacio
+  WHERE id = city_id
+  RETURNING population INTO poblacio_final;
 
-  RETURN sou_final;
+  RETURN poblacio_final;
 END;
 $$ LANGUAGE plpgsql;
 ```
 
-| Element                   | Descripció                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| `emp_id integer`          | Paràmetre d’entrada: ID de l’empleat.                                      |
-| `nou_sou numeric`         | Paràmetre d’entrada: nou sou a assignar.                                   |
-| `sou_final numeric`       | Variable local per guardar el sou actualitzat.                             |
-| `UPDATE ... RETURNING sou`| Actualitza el sou i retorna el valor actualitzat de la columna `sou`.      |
-| `INTO sou_final`          | Assigna el valor retornat per `RETURNING` a la variable `sou_final`.       |
-| `RETURN sou_final`        | Retorna el resultat final com a resposta de la funció.                     |
+| Element                          | Descripció                                                                                   |
+|----------------------------------|-----------------------------------------------------------------------------------------------|
+| `city_id integer`                | Paràmetre d’entrada: ID de la ciutat a la taula `City`.                                       |
+| `nova_poblacio integer`         | Paràmetre d’entrada: nova població que es vol assignar a la ciutat.                          |
+| `poblacio_final integer`        | Variable local per guardar el valor actualitzat de la població.                              |
+| `UPDATE ... RETURNING population`| Actualitza el camp `Population` de la ciutat indicada i retorna el nou valor actualitzat.    |
+| `INTO poblacio_final`           | Assigna el valor retornat per `RETURNING` a la variable local `poblacio_final`.              |
+| `RETURN poblacio_final`         | Retorna el valor final de la població un cop actualitzada, com a resultat de la funció.      |
 
 <br>
 
@@ -101,29 +101,29 @@ En PL/pgSQL, podem fer que una funció retorni **una fila completa** (tipus comp
 Suposem que tenim una taula `empleats(id, nom, sou)` i volem fer una funció que ens retorni totes les dades d’un empleat a partir del seu ID:
 
 ```sql
-CREATE FUNCTION get_empleat(emp_id integer) RETURNS RECORD AS $$
+CREATE FUNCTION get_ciutat(city_id integer) RETURNS RECORD AS $$
 DECLARE
-  emp_info RECORD;
+  ciutat_info RECORD;
 BEGIN
-  SELECT * INTO emp_info
-  FROM empleats
-  WHERE id = emp_id;
+  SELECT * INTO ciutat_info
+  FROM city
+  WHERE id = city_id;
 
-  RETURN emp_info;
+  RETURN ciutat_info;
 END;
 $$ LANGUAGE plpgsql;
 ```
 
 ```sql
-SELECT * FROM get_empleat('14');
+SELECT get_ciutat(14);
 ```
 
 Com a resultat obtenim: 
 
 ```
-   id  |  nom  |  sou 
--------+-------+-------
-   14  | Maria |  1500 
+ id |    name    | countrycode |     district    | population 
+----+------------+-------------+-----------------+-----------
+ 14 |  Nijmegen  |    NLD      |    Gelderland   |  152463
 (1 row)
 ```
 
@@ -151,7 +151,7 @@ $$ LANGUAGE plpgsql;
 Podem cridar a la funció: 
 
 ```sql
-SELECT * FROM calc_rect(2, 4);
+SELECT calc_rect(2, 4);
 ```
 
 Com a resultat obtenim: 
@@ -162,3 +162,8 @@ Com a resultat obtenim:
     8    |     12
 (1 row)
 ```
+
+<br>
+
+## Tractament d'excepcions
+
