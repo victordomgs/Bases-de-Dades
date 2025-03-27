@@ -251,3 +251,97 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 ```
+
+<br>
+
+## Bucles
+
+Hi ha diversos tipus de bucles en PL/pgSQL, en veurem alguns.
+
+Els bucles permeten repetir un bloc de codi diverses vegades segons una condició (`WHILE`) o un rang (`FOR`).
+
+### `WHILE`
+
+Repeteix un bloc de codi mentre una condició sigui certa.
+
+Aquest exemple imprimeix els noms de les primeres 5 ciutats (segons el seu id de l’1 al 5):
+
+Aquesta funció **no retorna re**s, només mostra les 5 primeres ciutats (per `id`) a través de missatges `RAISE NOTICE`.
+
+Pot donar error si algun `id` entre 1 i 5 no existeix (encara que a `world.city` habitualment sí que existeixen).
+
+
+```sql
+CREATE FUNCTION mostra_cinc_ciutats() RETURNS VOID AS $$
+DECLARE
+  comptador integer := 1;
+  ciutat_nom TEXT;
+BEGIN
+  WHILE comptador <= 5 LOOP
+    SELECT name INTO ciutat_nom
+    FROM city
+    WHERE id = comptador;
+
+    RAISE NOTICE 'Ciutat %: %', comptador, ciutat_nom;
+
+    comptador := comptador + 1;
+  END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+Anem a veure el codi pas per pas: 
+
+```sql
+CREATE FUNCTION mostra_cinc_ciutats() RETURNS VOID AS $$
+```
+- Crea una funció anomenada `mostra_cinc_ciutats`.
+- No retorna cap valor (`RETURNS VOID`).
+- El cos de la funció està delimitat per `$$`.
+
+```sql
+DECLARE
+  comptador integer := 1;
+  ciutat_nom TEXT;
+```
+- S’inicia la secció `DECLARE`, on es declaren variables locals.
+- `comptador`: variable per portar el control del nombre d’iteracions, inicialitzada a 1.
+- `ciutat_nom`: variable que guardarà el nom de la ciutat llegida de la base de dades.
+
+```sql
+BEGIN
+  WHILE comptador <= 5 LOOP
+```
+- Inicia el cos principal de la funció.
+- Comença un **bucle** `WHILE` que s’executarà **mentre** `comptador` **sigui menor o igual a 5**.
+
+```sql
+    SELECT name INTO ciutat_nom
+    FROM city
+    WHERE id = comptador;
+```
+- Aquesta consulta selecciona el **nom de la ciutat** (`name`) de la taula `city` amb `id = comptador`.
+- El resultat s’assigna a la variable `ciutat_nom`.
+
+```sql
+    RAISE NOTICE 'Ciutat %: %', comptador, ciutat_nom;
+```
+- Mostra un missatge **informatiu al log** de PostgreSQL, per exemple:
+```python
+Ciutat 1: Kabul
+Ciutat 2: Qandahar
+...
+```
+
+```sql
+comptador := comptador + 1;
+```
+- Incrementa el valor del **comptador** per passar al següent `id` en la pròxima iteració.
+
+```sql
+  END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+```
+- Finalitza el bucle `WHILE` i el bloc principal `BEGIN ... END`.
+- S’indica que el llenguatge utilitzat és **PL/pgSQL**, propi de PostgreSQL.
