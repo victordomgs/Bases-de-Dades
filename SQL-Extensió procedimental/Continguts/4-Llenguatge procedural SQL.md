@@ -408,3 +408,108 @@ $$ LANGUAGE plpgsql;
 ```
 - Finalitza el bucle `FOR` i el bloc principal `BEGIN ... END`.
 - S’indica que el llenguatge utilitzat és **PL/pgSQL**, propi de PostgreSQL.
+
+## Cursors
+
+Els **cursors** en PL/pgSQL permeten recórrer el resultat d’una consulta fila a fila. Són útils quan es vol fer tractament seqüencial de dades que retornen múltiples registres.
+
+L’interès d’estudiar els cursors és que, encara que ara ho fem amb PL/pgSQL, tots els llenguatges de programació utilitzen aquest mecanisme quan envien una consulta a una base de dades, així que el concepte i les idees que veiem ens serviran després per aplicar-les a Java, Python, PHP o el llenguatge que sigui que utilitzem.
+
+---
+
+### Quan s'utilitzen?
+
+- Quan volem tractar una a una les files retornades per una consulta.
+- Quan treballem amb moltes dades i volem processar-les progressivament.
+- Quan volem aplicar condicions específiques a cada fila retornada.
+
+---
+
+### Tipus de cursors
+
+#### 1. Cursors explícits
+S'han de declarar, obrir, llegir i tancar manualment.
+
+#### 2. Cursors implícits
+Són gestionats automàticament dins d’un bucle `FOR`.
+
+---
+
+### Exemple 1: Cursor explícit
+
+Suposem que volem mostrar per pantalla els països amb una població superior a 100 milions.
+
+```sql
+DO $$
+DECLARE
+    pais RECORD;
+    paisos_cursor CURSOR FOR
+        SELECT name, population FROM country WHERE population > 100000000;
+BEGIN
+    OPEN paisos_cursor;
+    LOOP
+        FETCH paisos_cursor INTO pais;
+        EXIT WHEN NOT FOUND;
+        RAISE NOTICE 'País: %, Població: %', pais.name, pais.population;
+    END LOOP;
+    CLOSE paisos_cursor;
+END $$;
+```
+
+## Diferents tipus de FETCH
+
+PL/pgSQL permet diverses variants de la instrucció `FETCH` per controlar **quines files** es volen recuperar del cursor.
+
+- **`FETCH NEXT`**: **Per defecte**. Recupera la **següent fila** del cursor. Equivalent al que fa el codi de l’exemple (`FETCH paisos_cursor INTO pais;`).
+- **`FETCH PRIOR`**: Recupera la **fila anterior** (només funciona amb cursors SCROLL). Útil si cal anar enrere.
+- **`FETCH FIRST`**: Recupera la **primera fila** del conjunt. **`FETCH ABSOLUTE n`** recupera la fila número **n**.
+- **`FETCH LAST`**: Recupera l’**última fila**.
+- **`FETCH RELATIVE n`**: Avança o retrocedeix **n** files respecte de la posició actual.
+  `FETCH RELATIVE 2` → avança 2 files.
+  `FETCH RELATIVE -1` → retrocedeix 1.
+
+> [!WARNING]  
+> Per utilitzar `PRIOR`, `ABSOLUTE`, `RELATIVE`, etc., s'ha de declarar el cursor amb l'opció `SCROLL`:
+>
+> ```sql
+> paisos_cursor SCROLL CURSOR FOR ...
+> ```
+
+## Cursors amb paràmetres
+
+Un cursor pot rebre **paràmetres** quan es declara, cosa que permet reutilitzar-lo per a diferents valors de cerca. Aquesta funcionalitat és útil quan volem aplicar filtres dinàmics.
+
+### Exemple 2: Mostrar les ciutats d'un país concret
+
+Volem crear un cursor que, donat un codi de país (`countrycode`), mostri totes les ciutats d’aquell país.
+
+```sql
+DO $$
+DECLARE
+    ciutat RECORD;
+    codi_pais TEXT := 'ESP';  -- Aquí pots posar el país que vulguis
+    cursor_ciutats CURSOR(codi TEXT) FOR
+        SELECT name, population FROM city WHERE countrycode = codi;
+BEGIN
+    OPEN cursor_ciutats(codi_pais);
+
+    LOOP
+        FETCH cursor_ciutats INTO ciutat;
+        EXIT WHEN NOT FOUND;
+        RAISE NOTICE 'Ciutat: %, Habitants: %', ciutat.name, ciutat.population;
+    END LOOP;
+
+    CLOSE cursor_ciutats;
+END $$;
+```
+
+## Recorregut pels resultats d'un cursor
+
+Aquest és l'ús més habitual d'un cursor: recórrer tots els seus resultats. 
+
+### Passos per fer el recorregut
+
+1. **Obrir el cursor** amb `OPEN`.
+2. **Recórrer les files** amb un bucle (`LOOP` o `WHILE`) i `FETCH`.
+3. **Sortir del bucle** quan no hi ha més resultats (`EXIT WHEN NOT FOUND`).
+4. **Tancar el cursor** amb `CLOSE`.
