@@ -415,15 +415,11 @@ Els **cursors** en PL/pgSQL permeten recórrer el resultat d’una consulta fila
 
 L’interès d’estudiar els cursors és que, encara que ara ho fem amb PL/pgSQL, tots els llenguatges de programació utilitzen aquest mecanisme quan envien una consulta a una base de dades, així que el concepte i les idees que veiem ens serviran després per aplicar-les a Java, Python, PHP o el llenguatge que sigui que utilitzem.
 
----
-
 ### Quan s'utilitzen?
 
 - Quan volem tractar una a una les files retornades per una consulta.
 - Quan treballem amb moltes dades i volem processar-les progressivament.
 - Quan volem aplicar condicions específiques a cada fila retornada.
-
----
 
 ### Tipus de cursors
 
