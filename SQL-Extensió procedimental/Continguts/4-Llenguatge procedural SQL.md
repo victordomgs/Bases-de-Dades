@@ -429,8 +429,6 @@ S'han de declarar, obrir, llegir i tancar manualment.
 #### 2. Cursors implícits
 Són gestionats automàticament dins d’un bucle `FOR`.
 
----
-
 ### Exemple 1: Cursor explícit
 
 Suposem que volem mostrar per pantalla els països amb una població superior a 100 milions.
