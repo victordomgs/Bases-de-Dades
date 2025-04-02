@@ -87,7 +87,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-I finalment, creem el trigguer que s'encarrega d'actualitzar la informació al log quan s'executa una actualització sobre la taula `country`:
+I finalment, creem el trigger que s'encarrega d'actualitzar la informació al log quan s'executa una actualització sobre la taula `country`:
 
 ```sql
 CREATE TRIGGER trg_log_country_population
