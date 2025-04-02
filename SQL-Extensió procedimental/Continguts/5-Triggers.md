@@ -28,7 +28,7 @@ Un trigger sempre s’associa a una **funció** que defineix què ha de fer. Aqu
 ### 1. Crear la funció trigger
 
 ```sql
-CREATE OR REPLACE FUNCTION check_city_population()
+CREATE FUNCTION check_city_population()
 RETURNS TRIGGER AS $$
 BEGIN
   IF NEW.population < 0 THEN
@@ -75,7 +75,7 @@ CREATE TABLE country_population_log (
 Seguidament defnim la funció que insireix la informació a la taula: 
 
 ```sql
-CREATE OR REPLACE FUNCTION log_country_population_change()
+CREATE FUNCTION log_country_population_change()
 RETURNS TRIGGER AS $$
 BEGIN
   IF NEW.population <> OLD.population THEN
