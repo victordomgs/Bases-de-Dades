@@ -96,3 +96,15 @@ FOR EACH ROW
 WHEN (OLD.population IS DISTINCT FROM NEW.population)
 EXECUTE FUNCTION log_country_population_change();
 ```
+
+## Consultar els triggers generats en una base de dades
+
+Estant connectats a la base de dades en concret, podem executar la següent consulta sql per veure la informació dels triggers generats sobre aquesta: 
+
+```sql
+SELECT trigger_name, event_manipulation, event_object_table, action_statement
+FROM information_schema.triggers
+WHERE trigger_schema = 'public'; 
+```
+
+Hauríem de modificar l'schema en cas que hàgim creat un en concret per crear la base de dades.
