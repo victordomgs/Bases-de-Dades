@@ -68,7 +68,6 @@ MongoDB treballa amb documents en format JSON. Totes les entrades al sistema, ta
 
 Per treballar amb MongoDB és molt important entendre el format de documents JSON.
 
-
 L’acrònim JSON ve de JavaScript Object Notation i, de fet, els objectes en JavaScript es poden exportar i importar en JSON directament. Però el JSON, igual que l’XML, s’ha convertit en un format estàndard d’intercanvi de dades entre aplicacions. De fet, és molt similar a l’XML, encara que més compacte.
 
 Un document, o un objecte, que en aquest context són sinònims, és simplement un conjunt de parelles camp:valor. El document es delimita pels símbols {}, i el símbol : separa un camp del seu valor. La , s’utilitza per separar les parelles. Els camps i, si són text, els valors, es delimiten amb ".
@@ -93,95 +92,275 @@ Els valors poden ser també arrays:
 }
 ```
 
-## 4. Primers passos
+## 4. Operacions bàsiques
 
-Una vegada estem dins de la consola, anem a veure algunes comandes bàsiques: 
+MongoDB ens permet realitzar operacions bàsiques de bases de dades mitjançant el seu terminal, que actua com un intèrpret complet de JavaScript.
 
-### 4.1. Mostrar les bases de dades disponibles:
+Per defecte, el sistema ens proporciona l'objecte `db`, que representa la base de dades actual. Mitjançant aquest objecte podem accedir a les col·leccions que conté la base de dades. Cada col·lecció es tracta com una propietat de `db`.
+
+Per exemple, si tenim una col·lecció anomenada `employees`, hi accedirem amb:
 
 ```javascript
-show dbs
+db.employees
 ```
 
-### 4.2. Crear o canviar de base de dades:
+Un cop tenim accés a la col·lecció, podem aplicar-hi diferents operacions mitjançant mètodes com ara:
+
+- `db.employees.find()` → Llegeix (Read) els documents de la col·lecció.
+- `db.employees.insertOne({...})` → Crea (Create) un nou document.
+- `db.employees.updateOne({...}, {...})` → Actualitza (Update) un document.
+- `db.employees.deleteOne({...})` → Elimina (Delete) un document.
+
+Aquestes operacions formen part del conjunt CRUD: **Create, Read, Update i Delete**, les accions bàsiques en qualsevol sistema de gestió de dades.
+
+### 4.1. Inserció de documents
+
+Per afegir dades a una col·lecció a MongoDB, utilitzem els mètodes `insertOne()` per inserir un sol document, o `insertMany()` per inserir diversos documents alhora.
+
+📌 Exemple amb `insertOne()`
+
+Suposem que volem afegir un nou treballador a la col·lecció `employees`. Ho faríem així:
 
 ```javascript
-use escola
+db.employees.insertOne({
+  DNI: '12345678Z',
+  name: 'Jordi',
+  salary: 2000,
+  age: 30
+})
 ```
 
-### 4.3. Inserir documents:
+En MongoDB no hi ha un esquema fix com en els SGBD relacionals. Això vol dir que cada document pot tenir una estructura diferent, i som nosaltres qui definim les claus i els valors en cada inserció. El format utilitzat és JSON, ja que MongoDB funciona internament amb JavaScript.
+
+✅ És recomanable escriure les insercions llargues en múltiples línies per claredat.
+
+#### 🔁 Resposta del sistema
+Després d’executar la comanda, obtindrem una resposta similar a aquesta:
 
 ```javascript
-db.alumnes.insertOne({ nom: "Júlia", edat: 17 })
-```
-
-Rebrem un missatge tal qual: 
-
-```javascript
-escola> db.alumnes.insertOne({nom: "Júlia", edat: 17})
 {
-  acknowledged: true,
-  insertedId: ObjectId('68090b1cd7c0eaa0ead861e0')
+  "acknowledged": true,
+  "insertedId": ObjectId("661f5d8b28b9e30b4e9fa93c")
 }
 ```
 
+Això ens indica que la inserció ha estat correcta i ens proporciona l’identificador únic (`_id`) que MongoDB ha assignat automàticament al document.
+
+> [!NOTE]
+> Si ho desitgem, podem assignar nosaltres mateixos el camp `_id`, especialment si tenim una clau natural com el DNI.
+
+També podem afegir diversos documents d'una sola vegada. Per fer-ho, passem un **array d'objectes** com a paràmetre: 
+
+```javascript
+db.employees.insertMany([
+  {DNI: '23456789X', name: 'Laia', salary: 1900, age: 28},
+  {DNI: '34567890Y', name: 'Nil', salary: 1750, age: 26},
+  {DNI: '45678901Z', name: 'Clara', salary: 2100, age: 32}
+])
+```
+
+> [!NOTE]
+> Fixeu-vos que utilitzem claudàtors [] per indicar que es tracta d’una llista de documents. Cada element dins l’array és un objecte JSON que representa un registre independent dins la col·lecció.
+
+
+### 4.2. Consultes bàsiques
+
+Per consultar documents dins d’una col·lecció utilitzem:
+
+- `find()` per recuperar **tots els documents**.
+- `findOne()` per recuperar **un sol document**.
+
+📌 Exemple per veure tots els empleats:
+
+```javascript
+db.employees.find()
+```
+
+Això, ens mostra tots els documents de la col·lecció. Per exemple: 
+
+```javascript
+{ "_id": ObjectId("..."), "DNI": "12345678Z", "name": "Jordi", "salary": 2000, "age": 30 }
+{ "_id": ObjectId("..."), "DNI": "23456789X", "name": "Laia", "salary": 1900, "age": 28 }
+{ "_id": ObjectId("..."), "DNI": "34567890Y", "name": "Nil", "salary": 1750, "age": 26 }
+{ "_id": ObjectId("..."), "DNI": "45678901Z", "name": "Clara", "salary": 2100, "age": 32 }
+```
+
+📌 Exemple per veure un document qualsevol:
+
+```javascript
+db.employees.findOne()
+```
+
+Retorna un sol document (normalment el primer trobat), útil per veure’n l’estructura:
+
+```javascript
+{
+  "_id": ObjectId("..."),
+  "DNI": "12345678Z",
+  "name": "Jordi",
+  "salary": 2000,
+  "age": 30
+}
+```
+
+> [!NOTE]
+> `find()` retorna un cursor (semblant a una llista o array), mentre que `findOne()` retorna un objecte directament.
+
+📌 Exemple per accedir al segon document (com a array):
+
+```javascript
+db.employees.find().toArray()[1]
+```
+
 > [!IMPORTANT]
-> L'`ObjectId` que veus a la sortida de la comanda `insertOne` és un identificador únic que MongoDB assigna automàticament a cada document inserit, si no li proporciones tu un camp `_id`.
+> A MongoDB Shell cal convertir el cursor a array amb `toArray()` si vols accedir per índex.
 
-Podem inserir un nou document utilitzant el camp `_id`.
+També, tenim algunes funcionalitats que ens permeten obtenir els documents més llegibles.
+
+Si volem una sortida més llegible, utilitzarem `pretty()`: 
 
 ```javascript
-db.aules.insertOne({_id: 1, codi: 1.7, grup: ASIX})
+db.employees.find().pretty()
 ```
 
-Rebrem un missatge tal qual on ens especifica que s'ha inserit un identificador.
+Mostra cada document amb indentació:
 
 ```javascript
-db.aules.insertOne({_id: 1, codi: '1.7', grup: 'ASIX'})
-{ acknowledged: true, insertedId: 1 }
+{
+  "_id": ObjectId("..."),
+  "DNI": "12345678Z",
+  "name": "Jordi",
+  "salary": 2000,
+  "age": 30
+}
+...
 ```
 
-### 4.4. Consultar documents:
+D'altra banda, podem controlar quants documents volem mostrar i des de quin punt:
 
 ```javascript
-db.alumnes.find()
+db.employees.find().skip(1).limit(2)
 ```
 
-o per veure els resultats ben formats: 
+Aquest exemple **salta el primer document** i després **mostra els dos següents**.
+
+Resultat:
 
 ```javascript
-db.alumnes.find().pretty()
+{ "_id": ObjectId("..."), "DNI": "23456789X", "name": "Laia", "salary": 1900, "age": 28 }
+{ "_id": ObjectId("..."), "DNI": "34567890Y", "name": "Nil", "salary": 1750, "age": 26 }
 ```
 
-### 4.5. Consultar documents amb criteris:
+> [!NOTE]
+> Aquesta manera d'encadenar mètodes (`find().skip().limit()`) forma part del que s'anomena fluent interface — una tècnica molt estesa que permet aplicar diverses operacions de forma consecutiva.
+
+Per defecte, MongoDB conserva l’ordre d’inserció amb `insertMany()`, per això els resultats de les consultes solen sortir en el mateix ordre. Tot i això, es pot desactivar aquest comportament si volem prioritzar el rendiment.
+
+### 4.3. Consultes amb filtres
+
+A MongoDB, podem filtrar documents passant un objecte com a **primer paràmetre del mètode** `find()`. Aquest objecte defineix els criteris de cerca.
+
+📌 Exemple bàsic: buscar per valor concret:
 
 ```javascript
-db.alumnes.find({ edat: 17 })
+db.employees.find({ age: 30 })
 ```
 
-### 4.6. Actualitzar documents:
+Aquesta consulta retorna tots els empleats que tenen 30 anys.
+
+Podem buscar per patrons de text (regex). Podem fer servir expressions regulars per cercar patrons dins de camps de text.
+
+📌 Exemple bàsic: empleats el nom dels quals comença per 'L':
 
 ```javascript
-db.alumnes.updateOne(
-  { nom: "Júlia" },
-  { $set: { edat: 18 } }
-)
+db.employees.find({ name: /^L/ })
 ```
 
-### 4.7. Eliminar documents:
+📌 Exemple bàsic: empleats el nom dels quals acaba per ‘a’:
 
 ```javascript
-db.alumnes.deleteOne({ nom: "Júlia" })
+db.employees.find({ name: /a$/ })
 ```
 
-### 4.8. ELiminar una col·lecció:
+També podem fer servir l'operador `$regex`, que és equivalent:
 
 ```javascript
-db.nom_colleccio.drop()
+db.employees.find({ name: { $regex: /^L/ } })
+db.employees.find({ name: { $regex: /a$/ } })
 ```
 
-### 4.9. Eliminar una base de dades:
+> [!NOTE]
+> `^` indica inici de cadena
+> `$` indica final de cadena
+> No calen cometes dins les regex (`/^L/`, no "`/^L/`")
+
+#### Filtres combinats
+
+Si afegim diversos criteris dins l'objecte, MongoDB interpreta que han de complir-se **tots**:
 
 ```javascript
-db.dropDatabase()
+db.employees.find({ age: 30, name: /^L/ })
+```
+
+Aquesta consulta retorna empleats que tinguin 30 anys i el nom comenci per 'L'.
+
+Podem fer cerques més potents fent servir operadors com:
+
+- `$gt` → més gran que
+- `$lt` → més petit que
+- `$gte` → més gran o igual
+- `$lte` → més petit o igual
+- `$ne` → diferent
+- `$eq` → igual
+
+📌 Exemple per cercar empleats de més de 28 anys:
+
+```javascript
+db.employees.find({ age: { $gt: 28 } })
+```
+
+Evidentment, existeix la possibilitat de fer servir operadors lògics per generar cerques més complexes: 
+
+📌 Exemple amb `or`, qualsevol de les condicions:
+
+```javascript
+db.employees.find({
+  $or: [
+    { age: { $gt: 28 } },
+    { name: /^L/ }
+  ]
+})
+```
+
+Això retorna empleats majors de 28 o amb nom que comenci per 'L'.
+
+📌 Exemple amb `and`, totes les condicions (només cal si hi ha més complexitat):
+
+```javascript
+db.employees.find({
+  $and: [
+    { age: { $gte: 27 } },
+    { age: { $lte: 30 } }
+  ]
+})
+```
+
+Aquest exemple busca empleats amb **edat entre 27 i 30 anys** (ambdós inclosos).
+
+#### Combinació d’$or i $and
+
+📌 Exemple complex: Empleats majors de 25 anys i que, a més, tinguin menys de 30 o el nom comenci per 'L':
+
+```javascript
+db.employees.find({
+  $and: [
+    { age: { $gt: 25 } },
+    {
+      $or: [
+        { age: { $lt: 30 } },
+        { name: /^L/ }
+      ]
+    }
+  ]
+})
 ```
