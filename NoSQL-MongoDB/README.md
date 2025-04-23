@@ -62,6 +62,39 @@ sudo systemctl enable mongod
 mongosh
 ```
 
+### 1.2. Format JSON
+
+MongoDB treballa amb documents en format JSON. Totes les entrades al sistema, tant pel que fa als documents com a les consultes s’han d’escriure en aquest format.
+
+Per treballar amb MongoDB és molt important entendre el format de documents JSON.
+
+
+L’acrònim JSON ve de JavaScript Object Notation i, de fet, els objectes en JavaScript es poden exportar i importar en JSON directament. Però el JSON, igual que l’XML, s’ha convertit en un format estàndard d’intercanvi de dades entre aplicacions. De fet, és molt similar a l’XML, encara que més compacte.
+
+Un document, o un objecte, que en aquest context són sinònims, és simplement un conjunt de parelles camp:valor. El document es delimita pels símbols {}, i el símbol : separa un camp del seu valor. La , s’utilitza per separar les parelles. Els camps i, si són text, els valors, es delimiten amb ".
+
+```javascript
+{
+  "camp1": "valor1",
+  "camp2": "valor2",
+  "camp3": 3,
+  "camp4": 4.5,
+  "camp5": true,
+  "camp6": false,
+  "camp7": null
+}
+```
+
+Els valors poden ser també arrays: 
+
+```javascript
+{
+  "camp1": ["valor1", "valor2", 3, 4.5]
+}
+```
+
+### 1.3. Primers passos
+
 Una vegada estem dins de la consola, anem a veure algunes comandes bàsiques: 
 
 1. Mostrar les bases de dades disponibles:
@@ -90,4 +123,65 @@ escola> db.alumnes.insertOne({nom: "Júlia", edat: 17})
   acknowledged: true,
   insertedId: ObjectId('68090b1cd7c0eaa0ead861e0')
 }
+```
+
+> [!IMPORTANT]
+> L'`ObjectId` que veus a la sortida de la comanda `insertOne` és un identificador únic que MongoDB assigna automàticament a cada document inserit, si no li proporciones tu un camp `_id`.
+
+Podem inserir un nou document utilitzant el camp `_id`.
+
+```javascript
+db.aules.insertOne({_id: 1, codi: 1.7, grup: ASIX})
+```
+
+Rebrem un missatge tal qual on ens especifica que s'ha inserit un identificador.
+
+```javascript
+db.aules.insertOne({_id: 1, codi: '1.7', grup: 'ASIX'})
+{ acknowledged: true, insertedId: 1 }
+```
+
+4. Consultar documents:
+
+```javascript
+db.alumnes.find()
+```
+
+o per veure els resultats ben formats: 
+
+```javascript
+db.alumnes.find().pretty()
+```
+
+5. Consultar documents amb criteris:
+
+```javascript
+db.alumnes.find({ edat: 17 })
+```
+
+6. Actualitzar documents:
+
+```javascript
+db.alumnes.updateOne(
+  { nom: "Júlia" },
+  { $set: { edat: 18 } }
+)
+```
+
+7. Eliminar documents:
+
+```javascript
+db.alumnes.deleteOne({ nom: "Júlia" })
+```
+
+8. ELiminar una col·lecció:
+
+```javascript
+db.nom_colleccio.drop()
+```
+
+9. Eliminar una base de dades:
+
+```javascript
+db.dropDatabase()
 ```
