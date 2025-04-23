@@ -62,3 +62,4 @@ sudo systemctl enable mongod
 mongosh
 ```
 
+Una vegada estem dins de la consola, 
