@@ -30,3 +30,35 @@ molt diferents entre ells emmagatzemats a la mateixa col·lecció. Fins i tot,
 els documents es poden modificar i afegir o treure camps dinàmicament.
 
 ### 1.1. Instal·lació
+
+1. En primer lloc, actualitzem el sistema e instal·lem els paquets necessaris:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install curl gnupg -y
+```
+2. Importem la clave pública oficial de MongoDB per tal de validar l'autenticació del repositori:
+   
+```bash
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+```
+3. Actualitzem e instal·lem mongodb:
+
+```bash
+sudo apt update
+sudo apt install -y mongodb-org
+```
+
+4. Iniciem i habilitem mongodb:
+
+```bash
+sudo systemctl start mongod
+sudo systemctl enable mongod
+```
+
+5. Executem el SHELL de mongodb:
+
+```bash
+mongosh
+```
+
