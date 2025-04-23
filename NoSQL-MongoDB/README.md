@@ -62,4 +62,32 @@ sudo systemctl enable mongod
 mongosh
 ```
 
-Una vegada estem dins de la consola, 
+Una vegada estem dins de la consola, anem a veure algunes comandes bàsiques: 
+
+1. Mostrar les bases de dades disponibles:
+
+```javascript
+show dbs
+```
+
+2. Crear o canviar de base de dades:
+
+```javascript
+use escola
+```
+
+3. Inserir documents:
+
+```javascript
+db.alumnes.insertOne({ nom: "Júlia", edat: 17 })
+```
+
+Rebrem un missatge tal qual: 
+
+```javascript
+escola> db.alumnes.insertOne({nom: "Júlia", edat: 17})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68090b1cd7c0eaa0ead861e0')
+}
+```
