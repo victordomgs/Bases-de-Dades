@@ -29,7 +29,7 @@ camps que en d’altres documents no hi siguin, i documents amb estructures
 molt diferents entre ells emmagatzemats a la mateixa col·lecció. Fins i tot,
 els documents es poden modificar i afegir o treure camps dinàmicament.
 
-### 1.1. Instal·lació
+## 2. Instal·lació
 
 1. En primer lloc, actualitzem el sistema e instal·lem els paquets necessaris:
 
@@ -62,7 +62,7 @@ sudo systemctl enable mongod
 mongosh
 ```
 
-### 1.2. Format JSON
+## 3. Format JSON
 
 MongoDB treballa amb documents en format JSON. Totes les entrades al sistema, tant pel que fa als documents com a les consultes s’han d’escriure en aquest format.
 
@@ -93,23 +93,23 @@ Els valors poden ser també arrays:
 }
 ```
 
-### 1.3. Primers passos
+## 4. Primers passos
 
 Una vegada estem dins de la consola, anem a veure algunes comandes bàsiques: 
 
-1. Mostrar les bases de dades disponibles:
+### 4.1. Mostrar les bases de dades disponibles:
 
 ```javascript
 show dbs
 ```
 
-2. Crear o canviar de base de dades:
+### 4.2. Crear o canviar de base de dades:
 
 ```javascript
 use escola
 ```
 
-3. Inserir documents:
+### 4.3. Inserir documents:
 
 ```javascript
 db.alumnes.insertOne({ nom: "Júlia", edat: 17 })
@@ -141,7 +141,7 @@ db.aules.insertOne({_id: 1, codi: '1.7', grup: 'ASIX'})
 { acknowledged: true, insertedId: 1 }
 ```
 
-4. Consultar documents:
+### 4.4. Consultar documents:
 
 ```javascript
 db.alumnes.find()
@@ -153,13 +153,13 @@ o per veure els resultats ben formats:
 db.alumnes.find().pretty()
 ```
 
-5. Consultar documents amb criteris:
+### 4.5. Consultar documents amb criteris:
 
 ```javascript
 db.alumnes.find({ edat: 17 })
 ```
 
-6. Actualitzar documents:
+### 4.6. Actualitzar documents:
 
 ```javascript
 db.alumnes.updateOne(
@@ -168,19 +168,19 @@ db.alumnes.updateOne(
 )
 ```
 
-7. Eliminar documents:
+### 4.7. Eliminar documents:
 
 ```javascript
 db.alumnes.deleteOne({ nom: "Júlia" })
 ```
 
-8. ELiminar una col·lecció:
+### 4.8. ELiminar una col·lecció:
 
 ```javascript
 db.nom_colleccio.drop()
 ```
 
-9. Eliminar una base de dades:
+### 4.9. Eliminar una base de dades:
 
 ```javascript
 db.dropDatabase()
