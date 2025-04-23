@@ -364,3 +364,145 @@ db.employees.find({
   ]
 })
 ```
+
+### 4.4. Consultes amb projeccions
+
+Quan només volem veure **certs camps** dels documents i no la totalitat, podem afegir un **segon paràmetre** a la funció `find()` per indicar **quins camps volem recuperar**.
+
+Aquesta projecció és un objecte amb:
+
+- valor `1` per **mostrar** el camp.
+- valor `0` per **ocultar-lo**.
+
+📌 Exemple per mostrar només el nom dels empleats:
+
+```javascript
+db.employees.find({}, { name: 1 })
+```
+
+MongoDB mostra sempre el camp `_id` per defecte:
+
+```javascript
+{ "_id": ObjectId("..."), "name": "Jordi" }
+...
+```
+
+Si volem ocultar el camp `_id` farem:
+
+```javascript
+db.employees.find({}, { name: 1, _id: 0 })
+```
+
+```javascript
+{ "name": "Jordi" }
+{ "name": "Laia" }
+{ "name": "Nil" }
+```
+
+📌 Exemple amb condició i projecció:
+
+```javascript
+db.employees.find(
+  { age: { $gt: 28 } },
+  { name: 1, age: 1, _id: 0 }
+)
+```
+
+```javascript
+{ "name": "Clara", "age": 32 }
+```
+
+Per ordenar els resultats d’una consulta s’utilitza la funció `sort()`. Aquesta funció rep un document com a paràmetre. Aquest document serveix per indicar per quin o quins camps s’ha de fer l’ordenació, i si l’ordenació és ascendent o descendent.
+
+Per exemple:
+
+- Si passem el document `{name:1}` ordenarà pel camp `name` de forma ascendent.
+- Si passem el document `{name:-1}` ho farà de forma descendent.
+- El document `{salary:-1,name:1}` indica que primer s’ha d’ordenar pel `salary` de forma descendent i que els documents que tenen el mateix valor al camp `salary` s’ordenaran pel camp `name` de forma ascendent.
+
+📌 Exemple amb ordenació per noms alfabètics:
+
+```javascript
+db.employees.find({}, { name: 1, _id: 0 }).sort({ name: 1 })
+```
+
+📌 Exemple d'ordenar per sou (descendent), i en cas d'empat, per DNI (ascendent):
+
+```javascript
+db.employees.find({}, { name: 1, DNI: 1, salary: 1, _id: 0 }).sort({ salary: -1, DNI: 1 })
+```
+
+📌 Exemple majors de 25 anys, ordenats pel DNI:
+
+```javascript
+db.employees.find({ age: { $gt: 25 } }).sort({ DNI: 1 })
+```
+
+📌 Exemple de l'empleat que cobra més:
+
+```javascript
+db.employees.find({}, { name: 1, DNI: 1, salary: 1, _id: 0 }).sort({ salary: -1 }).limit(1)
+```
+
+📌 Exemple de l'empleat que cobra el segon sou més alt:
+
+```javascript
+db.employees.find({}, { name: 1, DNI: 1, salary: 1, _id: 0 }).sort({ salary: -1 }).skip(1).limit(1)
+```
+
+#### Modificació de documents
+
+MongoDB permet actualitzar documents amb:
+
+- `updateOne()` → actualitza el primer document trobat
+- `updateMany()` → actualitza tots els documents que compleixen la condició
+- `replaceOne()` → substitueix el document complet
+
+📌 Exemple d'actualitzar el sou d'un empleat:
+
+```javascript
+db.employees.updateOne({ name: "Clara" }, { $set: { salary: 2200 } })
+```
+
+📌 Exemple d'incrementar el sou de tots els majors de 25 anys:
+
+```javascript
+db.employees.updateMany({ age: { $gt: 25 } }, { $inc: { salary: 100 } })
+```
+
+📌 Exemple en aplicar un augment percentual del 5% als menors de 26 anys:
+
+```javascript
+db.employees.updateMany({ age: { $lte: 25 } }, { $mul: { salary: 1.05 } })
+```
+
+📌 Exemple per substituir completament un document:
+
+```javascript
+db.employees.replaceOne(
+  { name: "Clara" },
+  { DNI: "98765432X", name: "Manel", salary: 1600, age: 24 }
+)
+```
+
+#### Eliminació de documents
+
+📌 Exemple, per esborrar documents podem fer servir: 
+
+```javascript
+db.employees.deleteOne({ name: "Manel" })
+```
+
+> [!NOTE]
+> Només eliminarà el **primer document** que coincideixi amb el filtre.
+
+📌 Exemple en cas que volem eliminar tots els documents amb aquest nom: 
+
+Utilitzem `deleteMany()`:
+
+```javascript
+db.employees.deleteMany({ name: "Manel" })
+```
+
+> [!NOTE]
+> És important destacar que, a diferència dels SGBD relacionals amb claus primàries úniques, a MongoDB pots tenir diversos documents amb el mateix valor en un camp si no el defineixes com a únic (unique). Per això, la distinció entre `deleteOne` i `deleteMany` és **essencial** per evitar errors no desitjats.
