@@ -42,21 +42,28 @@ sudo apt install curl gnupg -y
 ```bash
 curl -fsSL https://pgp.mongodb.com/server-7.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
 ```
-3. Actualitzem e instal·lem mongodb:
+
+3. Crea el archivo .list del repositorio:
+
+```bash
+echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list > /dev/null
+```
+
+4. Actualitzem e instal·lem mongodb:
 
 ```bash
 sudo apt update
 sudo apt install -y mongodb-org
 ```
 
-4. Iniciem i habilitem mongodb:
+5. Iniciem i habilitem mongodb:
 
 ```bash
 sudo systemctl start mongod
 sudo systemctl enable mongod
 ```
 
-5. Executem el SHELL de mongodb:
+6. Executem el SHELL de mongodb:
 
 ```bash
 mongosh
