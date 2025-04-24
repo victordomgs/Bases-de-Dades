@@ -7,7 +7,7 @@ Descarrega el següent [fitxer](https://github.com/neelabalan/mongodb-sample-dat
 Troba les dades del codi postal 01222.
 
 
-Troba el document que s’ha inserit a la posició 2421.
+Troba el document que s’ha inserit a la posició 3500.
 
 
 Sabent que hem importat 29470 documents, mostra els 5 últims.
