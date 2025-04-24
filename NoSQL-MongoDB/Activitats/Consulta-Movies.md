@@ -24,7 +24,7 @@ mongoimport --db mflix --collection movies --file ~/Baixades/movies.json
    
 7. Troba totes les pel·lícules el títol de les quals comença per la lletra “Z”.
    
-8. Mostra totes les pel·lícules dirigides per directors dels Estats d’Oregon (OR) o Nova York (NY) — 🔁 Adaptem: farem servir un camp de país.
+8. Mostra totes les pel·lícules dirigides per directors dels Estats d’Oregon (OR) o Nova York (NY).
    
 9. Afegeix una nova pel·lícula amb estructura similar a la resta.
     
