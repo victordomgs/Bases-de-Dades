@@ -22,4 +22,4 @@ Descarrega el següent [fitxer](https://github.com/neelabalan/mongodb-sample-dat
 
 9. Sabent que el codi postal més gran de la col·lecció és el 99950, afegeix un nou document amb la mateixa estructura dels documents existents.
 
-10.Afegeix ara dos documents més, utilitzant una única sentència.
+10. Afegeix ara dos documents més, utilitzant una única sentència.
