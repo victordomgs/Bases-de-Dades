@@ -513,3 +513,45 @@ db.employees.deleteMany({ name: "Manel" })
 
 > [!NOTE]
 > És important destacar que, a diferència dels SGBD relacionals amb claus primàries úniques, a MongoDB pots tenir diversos documents amb el mateix valor en un camp si no el defineixes com a únic (unique). Per això, la distinció entre `deleteOne` i `deleteMany` és **essencial** per evitar errors no desitjats.
+
+## 5. Aggregation framework
+
+L’agregació a MongoDB és un procés per **processar dades i obtenir resultats resumits**, com comptes, mitjanes, sumes, agrupacions o transformacions.
+
+S'utilitza el **pipeline d'agregació**, que és una seqüència d’etapes que es processen una darrere l’altra.
+
+### 5.1. El pipeline
+
+**Aggregation framework** utilitza el concepte de **canonada (pipeline)**. La idea és que una consulta es divideix en diversos **estadis (stages)** i que els resultats d’un estadis es passen al següent estadi, seguint un ordre preestablert.
+
+| Nom de l’estadi | Ús                                                                                       | Multiplicitat |
+|------------------|------------------------------------------------------------------------------------------|----------------|
+| `$project`       | Selecciona els camps que volem d’un document i els mapeja als camps del document de sortida. | [1, 1]         |
+| `$match`         | Filtra els documents que ens interessen utilitzant els filtres habituals de MongoDB         | [1, 0-1]       |
+| `$limit`         | Retorna només la quantitat de documents demanada                                            | [1, 0-1]       |
+| `$skip`          | Es salta el nombre de documents indicat abans de retornar resultats.                        | [1, 0-1]       |
+| `$unwind`        | Divideix un array dels documents d’entrada, obtenint un document per a cada valor de l’array. | [1, 0-n]       |
+| `$group`         | Agrupa els documents per algun camp i permet fer càlculs per a cada grup obtingut.         | [n, 1]         |
+| `$sort`          | Ordena els documents per algun camp                                                        | [1, 1]         |
+| `$lookup`        | Permet unir documents de dues col·leccions diferents.                                       | [1, 1]         |
+| `$out`           | Reescriu el resultat de tot el procés a una nova col·lecció.                               | [1, 1]         |
+
+Totes les consultes que utilitzen **aggregation framework** es creen amb la funció **aggregate**:
+
+```javascript
+db.zips.aggregate(. . .)
+```
+
+**aggregate** rep un array de documents. Cada document conté una única parella de clau-valor. La clau és l'estadi del **pipeline** a utilitzar i el valor els seus arguments: 
+
+```javascript
+db.zips.aggregate([
+  {$project : ...},
+  {$limit : ...}
+])
+```
+
+Existeixen multitud d’operadors que es poden utilitzar dins de l'**aggregation framework**, com operadors booleans (`$and`, `$or`…​), de comparació (`$eq`, `$gt`…​), aritmètics (`$add`…​), de cadenes (`$concat`…​), d’arrays (`$filter`, `$size`, `$push`…​), etc.
+
+Pots veure un resum amb tots els operadors a [operadors](https://www.mongodb.com/docs/manual/reference/operator/aggregation/#expression-operators).
+
