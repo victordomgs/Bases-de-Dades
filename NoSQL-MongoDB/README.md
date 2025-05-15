@@ -555,6 +555,8 @@ Pots veure un resum amb tots els operadors a [operadors](https://www.mongodb.com
 
 Anem a veure alguns exemples. Utilitzant les dades de AirBnb: 
 
+### 5.2. Exemples d'agregacions
+
 📌 Exemple en cas que volem comptar quantes ressenyes té l'apartament: 
 
 ```javascript
