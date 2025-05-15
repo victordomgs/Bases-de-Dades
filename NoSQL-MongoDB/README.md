@@ -539,13 +539,13 @@ S'utilitza el **pipeline d'agregació**, que és una seqüència d’etapes que 
 Totes les consultes que utilitzen **aggregation framework** es creen amb la funció **aggregate**:
 
 ```javascript
-db.zips.aggregate(. . .)
+db.listingsandreviews.aggregate(. . .)
 ```
 
 **aggregate** rep un array de documents. Cada document conté una única parella de clau-valor. La clau és l'estadi del **pipeline** a utilitzar i el valor els seus arguments: 
 
 ```javascript
-db.zips.aggregate([
+db.listingsandreviews.aggregate([
   {$project : ...},
   {$limit : ...}
 ])
@@ -554,4 +554,111 @@ db.zips.aggregate([
 Existeixen multitud d’operadors que es poden utilitzar dins de l'**aggregation framework**, com operadors booleans (`$and`, `$or`…​), de comparació (`$eq`, `$gt`…​), aritmètics (`$add`…​), de cadenes (`$concat`…​), d’arrays (`$filter`, `$size`, `$push`…​), etc.
 
 Pots veure un resum amb tots els operadors a [operadors](https://www.mongodb.com/docs/manual/reference/operator/aggregation/#expression-operators).
+
+Anem a veure alguns exemples. Utilitzant les dades de AirBnb: 
+
+📌 Exemple en cas que volem comptar quantes ressenyes té l'apartament: 
+
+```javascript
+db.listingsandreviews.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      number_of_reviews: { $size: "$reviews" }
+    }
+  }
+])
+```
+
+Amb `$project` podem **redefinir l'estructura dels documents de sortida**, seleccionant només els camps que ens interessen i/o creant nous camps calculats. 
+
+- `name: 1`
+- 
+✅ Indica que volem **incloure el camp** `name` (el nom de l'apartament) tal com està.
+
+- `number_of_reviews: { $size: "$reviews" }`
+  
+📏 Aquí estem creant un nou camp anomenat `number_of_reviews` que conté el nombre d’elements dins l’array `reviews`.
+És a dir, compta quantes ressenyes té cada allotjament.
+
+> [!IMPORTANT]  
+> El camp `reviews` dins dels documents és un **array d’objectes**, cada un representant una ressenya.
+> La funció `$size` només funciona si el camp és un **array**. Si reviews fos null o un valor escalar, donaria error.
+
+📌 Exemple en cas que volem calcular la mitjana de puntuació global de l'apartament: 
+
+```javascript
+db.listingsandreviews.aggregate([
+  {
+    $project: {
+      name: 1,
+      avg_score: {
+        $avg: [
+          "$review_scores.review_scores_accuracy",
+          "$review_scores.review_scores_cleanliness",
+          "$review_scores.review_scores_checkin",
+          "$review_scores.review_scores_communication",
+          "$review_scores.review_scores_location",
+          "$review_scores.review_scores_value"
+        ]
+      }
+    }
+  }
+])
+```
+
+Imaginem que volem filtrar per aquells apartaments on la seva mitjana de puntuació global sigui inferior a 5, en aquest cas hauriem d'utilitzar el camp `$match`: 
+
+```javascript
+db.listingsandreviews.aggregate([ 
+  {
+    $project: {
+      name: 1,
+      avg_score: {
+        $avg: [
+          "$review_scores.review_scores_accuracy",
+          "$review_scores.review_scores_cleanliness",
+          "$review_scores.review_scores_checkin",
+          "$review_scores.review_scores_communication",
+          "$review_scores.review_scores_location",
+          "$review_scores.review_scores_value"
+        ]
+      }
+    }
+  },
+  {
+    $match: {
+      avg_score: { $lt: 7, $ne: null }
+    }
+  }
+])
+```
+
+> [!NOTE]  
+> Filtrem també aquells valors que no siguin iguals a null per evitar que apareguin registres d'apartaments que no tenen valoracions.
+
+📌 Exemple en cas que volem calcular el número de llits (`beds`) disponibles per a cada tipus de propietat (`property_type`). Necessitarem utilitzar una agrupació (`$group`): 
+
+```javascript
+db.listingsandreviews.aggregate([ 
+  {
+    $group: {
+      _id: "$property_type",
+      total_beds: { $sum: "$beds" }
+    }
+  }
+])
+```
+
+> [!NOTE]  
+> El camp `beds` ha de ser numèric. Si algun document té `beds: null`, `string` o no el té, pot causar problemes o que no es compti.
+> Si vols evitar problemes amb documents que no tenen `beds`, pots fer una etapa `$match` prèvia:
+> ```javascript
+> { $match: { beds: { $type: "number" } } }
+> ```
+
+
+
+
 
