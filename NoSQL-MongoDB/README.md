@@ -524,17 +524,15 @@ S'utilitza el **pipeline d'agregació**, que és una seqüència d’etapes que 
 
 **Aggregation framework** utilitza el concepte de **canonada (pipeline)**. La idea és que una consulta es divideix en diversos **estadis (stages)** i que els resultats d’un estadis es passen al següent estadi, seguint un ordre preestablert.
 
-| Nom de l’estadi | Ús                                                                                       | Multiplicitat |
-|------------------|------------------------------------------------------------------------------------------|----------------|
-| `$project`       | Selecciona els camps que volem d’un document i els mapeja als camps del document de sortida. | [1, 1]         |
-| `$match`         | Filtra els documents que ens interessen utilitzant els filtres habituals de MongoDB         | [1, 0-1]       |
-| `$limit`         | Retorna només la quantitat de documents demanada                                            | [1, 0-1]       |
-| `$skip`          | Es salta el nombre de documents indicat abans de retornar resultats.                        | [1, 0-1]       |
-| `$unwind`        | Divideix un array dels documents d’entrada, obtenint un document per a cada valor de l’array. | [1, 0-n]       |
-| `$group`         | Agrupa els documents per algun camp i permet fer càlculs per a cada grup obtingut.         | [n, 1]         |
-| `$sort`          | Ordena els documents per algun camp                                                        | [1, 1]         |
-| `$lookup`        | Permet unir documents de dues col·leccions diferents.                                       | [1, 1]         |
-| `$out`           | Reescriu el resultat de tot el procés a una nova col·lecció.                               | [1, 1]         |
+| Nom de l’estadi | Ús                                                                                       |
+|------------------|------------------------------------------------------------------------------------------|
+| `$project`       | Selecciona els camps que volem d’un document i els mapeja als camps del document de sortida. |
+| `$match`         | Filtra els documents que ens interessen utilitzant els filtres habituals de MongoDB         |
+| `$limit`         | Retorna només la quantitat de documents demanada                                            |
+| `$skip`          | Es salta el nombre de documents indicat abans de retornar resultats.                        |
+| `$unwind`        | Divideix un array dels documents d’entrada, obtenint un document per a cada valor de l’array. |
+| `$group`         | Agrupa els documents per algun camp i permet fer càlculs per a cada grup obtingut.         |
+| `$sort`          | Ordena els documents per algun camp                                                        | 
 
 Totes les consultes que utilitzen **aggregation framework** es creen amb la funció **aggregate**:
 
@@ -584,6 +582,7 @@ Amb `$project` podem **redefinir l'estructura dels documents de sortida**, selec
 
 > [!IMPORTANT]  
 > El camp `reviews` dins dels documents és un **array d’objectes**, cada un representant una ressenya.
+> 
 > La funció `$size` només funciona si el camp és un **array**. Si reviews fos null o un valor escalar, donaria error.
 
 📌 Exemple en cas que volem calcular la mitjana de puntuació global de l'apartament: 
@@ -653,12 +652,63 @@ db.listingsandreviews.aggregate([
 
 > [!NOTE]  
 > El camp `beds` ha de ser numèric. Si algun document té `beds: null`, `string` o no el té, pot causar problemes o que no es compti.
+> 
 > Si vols evitar problemes amb documents que no tenen `beds`, pots fer una etapa `$match` prèvia:
+> 
 > ```javascript
 > { $match: { beds: { $type: "number" } } }
 > ```
 
+Podem aplicar una ordenació descendent en cas que ens interesses, aplicant simplement l'estadi `$sort`:
 
+```javascript
+db.listingsandreviews.aggregate([ 
+  {
+    $group: {
+      _id: "$property_type",
+      total_beds: { $sum: "$beds" }
+    }
+  },
+  {
+    $sort: {
+      total_beds: -1
+    }
+  }
+])
+```
 
+📌 Exemple en cas que volem filtrar per aquells allotjaments que tenen més de 10 ressenyes i que a més, volem calcular la mitjana de `review_scores_rating` : 
 
+```javascript
+db.listingsandreviews.aggregate([
+  { 
+    $match: { number_of_reviews: { $gt: 10 } } 
+  },
+  {
+    $group: {
+      _id: "$host.host_name",
+      avg_rating: { $avg: "$review_scores.review_scores_rating" },
+      total_reviews: { $sum: "$number_of_reviews" }
+    }
+  }
+])
+```
 
+📌 Imaginem que sobre les `reviews` que formen part d'un mateix document, volem crear un document separat amb cadascuna d'aquestes `reviews`: 
+
+```javascript
+db.listingsandreviews.aggregate([
+  { $unwind: "$reviews" },
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      reviewer: "$reviews.reviewer_name",
+      comments: "$reviews.comments"
+    }
+  }
+])
+```
+
+> [!NOTE]
+> `$unwind` agafa cada element de l’array `reviews` i **crea un document separat** per a cadascun.
